@@ -2,6 +2,7 @@ import React from 'react';
 
 import countryApi from '../api/countryApi';
 import CountryGrid from './CountryGrid';
+import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
 import CountrySearch from './CountrySearch';
 
@@ -48,15 +49,27 @@ class Countries extends React.Component {
     this.setState({ filteredCountries });
   }
 
+  renderCountries() {
+    switch(this.state.displayType) {
+      case 'grid':
+        return <CountryGrid countries={this.state.filteredCountries} />;
+      case 'table':
+        return <CountryDatatable countries={this.state.filteredCountries} />;
+      case 'map':
+      default:
+        return <CountryMap countries={this.state.filteredCountries} />
+    }
+  }
+
   render() {
-    const countryDisplay = this.state.displayType === "map" ? <CountryMap countries={this.state.filteredCountries} /> : <CountryGrid countries={this.state.filteredCountries} />;
     return (      
       <section>
         <header>Countries</header>
         <button onClick={() => this.setDisplayType('map')}>Map</button>
         <button onClick={() => this.setDisplayType('grid')}>Grid</button>
+        <button onClick={() => this.setDisplayType('table')}>Table</button>
         <CountrySearch onSearch={this.searchCountries} />
-        {countryDisplay}
+        {this.renderCountries()}
       </section>
     );
   }
