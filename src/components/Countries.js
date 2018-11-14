@@ -1,8 +1,9 @@
 import React from 'react';
+
+import countryApi from '../api/countryApi';
 import CountryGrid from './CountryGrid';
 import CountryMap from './CountryMap';
-
-const COUNTRIES_API_URL = 'https://restcountries.eu/rest/v2/all';
+import CountrySearch from './CountrySearch';
 
 class Countries extends React.Component {
 
@@ -12,18 +13,21 @@ class Countries extends React.Component {
       error: null,
       isLoaded: false,
       countries: [],
+      filteredCountries: [],
       displayType: 'map'
     };
+    this.searchCountries = this.searchCountries.bind(this);
   }
 
   componentDidMount() {
-    fetch(COUNTRIES_API_URL)
+    countryApi.getCountries()
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            countries: result
+            countries: result,
+            filteredCountries: result
           });
         },
         (error) => {
@@ -39,13 +43,19 @@ class Countries extends React.Component {
     this.setState({ displayType });
   }
 
+  searchCountries(filterName) {
+    const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, { filterName })
+    this.setState({ filteredCountries });
+  }
+
   render() {
-    const countryDisplay = this.state.displayType === "map" ? <CountryMap countries={this.state.countries} /> : <CountryGrid countries={this.state.countries} />;
+    const countryDisplay = this.state.displayType === "map" ? <CountryMap countries={this.state.filteredCountries} /> : <CountryGrid countries={this.state.filteredCountries} />;
     return (      
       <section>
         <header>Countries</header>
         <button onClick={() => this.setDisplayType('map')}>Map</button>
         <button onClick={() => this.setDisplayType('grid')}>Grid</button>
+        <CountrySearch onSearch={this.searchCountries} />
         {countryDisplay}
       </section>
     );
