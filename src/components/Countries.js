@@ -8,17 +8,22 @@ import CountrySearch from './CountrySearch';
 
 class Countries extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      countries: [],
-      filteredCountries: [],
-      displayType: 'map'
-    };
-    this.searchCountries = this.searchCountries.bind(this);
-  }
+  state = {
+    error: null,
+    isLoaded: false,
+    countries: [],
+    filteredCountries: [],
+    displayType: 'map'
+  };
+
+  searchCountries = (filterName) => {
+    const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, { filterName })
+    this.setState({ filteredCountries });
+  };
+
+  setDisplayType = (displayType) => {
+    this.setState({ displayType });
+  };
 
   componentDidMount() {
     countryApi.getCountries()
@@ -38,15 +43,6 @@ class Countries extends React.Component {
           });
         }
       );
-  }
-
-  setDisplayType(displayType) {
-    this.setState({ displayType });
-  }
-
-  searchCountries(filterName) {
-    const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, { filterName })
-    this.setState({ filteredCountries });
   }
 
   renderCountries() {

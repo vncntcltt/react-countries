@@ -1,31 +1,33 @@
 import React from 'react';
+import { array } from 'prop-types';
 
-class CountryDatatable extends React.Component {
+import CountryDataRow from './CountryDataRow';
 
-  render() {
-    return (
-      <table>
-      <tr>
-        <th>Name</th>
-        <th>Code</th>
-        <th>Region</th>
-        <th>Subregion</th>
-        <th>Population</th>
-        <th>Area</th>
-      </tr>
-      {this.props.countries.map(country => 
-        <tr key={country.alpha3Code}>
-          <td>{country.name}</td>
-          <td>{country.alpha3Code}</td>
-          <td>{country.region}</td>
-          <td>{country.subregion}</td>
-          <td>{country.population}</td>
-          <td>{country.area}</td>
+const CountryDatatable = props => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Capital</th>
+          <th>Region</th>
+          <th>Subregion</th>
+          <th>Population</th>
+          <th>Area</th>
         </tr>
-      )}
-      </table>
-    );
-  }
+      </thead>
+      <tbody>
+        {props.countries.map(country =>
+          <CountryDataRow key={country.alpha3Code} country={country} />
+        )}
+      </tbody>
+    </table>
+  );
+}
+
+CountryDatatable.propTypes = {
+  countries: array.isRequired
 }
 
 export default CountryDatatable;
