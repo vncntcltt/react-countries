@@ -5,6 +5,7 @@ import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
 import CountrySearch from './CountrySearch';
+import CountrySelectFilter from './CountrySelectFilter';
 
 class Countries extends React.Component {
 
@@ -13,27 +14,66 @@ class Countries extends React.Component {
     isLoaded: false,
     countries: [],
     filteredCountries: [],
-    displayType: 'map'
+    regions: [],
+    subregions: [],
+    languages: [],
+    regionalBlocs: [],
+    displayType: 'map',
+    filterRegion: null,
+    filterSubregion: null,
+    filterRegionalBloc: null,
+    filterLanguages: null,
+    filterName: null
   };
 
-  searchCountries = (filterName) => {
-    const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, { filterName })
-    this.setState({ filteredCountries });
+  searchCountries = filterName => {
+    this.setState({ filterName });
   };
+
+  filterCountriesByRegion = filterRegion => {
+    this.setState({ filterRegion });
+  }
+
+  filterCountriesBySubregion = filterSubregion => {
+    this.setState({ filterSubregion });
+  }
+
+  filterCountriesByLanguage = filterLanguages => {
+    this.setState({ filterLanguages });    
+  }
+
+  filterCountriesByRegionalBloc = filterRegionalBloc => {
+    this.setState({ filterRegionalBloc });
+  }
 
   setDisplayType = (displayType) => {
     this.setState({ displayType });
   };
+
+  getFilterAndSorts() {
+    return {
+      filterRegion: this.state.filterRegion,
+      filterSubregion: this.state.filterSubregion,
+      filterLanguages: this.state.filterLanguages,
+      filterRegionalBloc: this.state.filterRegionalBloc,
+      filterName: this.state.filterName
+    };
+  }
 
   componentDidMount() {
     countryApi.getCountries()
       .then(res => res.json())
       .then(
         (result) => {
+          const regionData = countryApi.buildRegionData(result)
           this.setState({
             isLoaded: true,
             countries: result,
-            filteredCountries: result
+            filteredCountries: result,
+            regions: regionData.regions,
+            subregions: regionData.subregions,
+            regionalBlocs: regionData.regionalBlocs, 
+            languages: regionData.languages
           });
         },
         (error) => {
@@ -43,6 +83,17 @@ class Countries extends React.Component {
           });
         }
       );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.filterName !== this.state.filterName
+      || prevState.filterRegion !== this.state.filterRegion
+      || prevState.filterSubregion !== this.state.filterSubregion
+      || prevState.filterRegionalBloc !== this.state.filterRegionalBloc      
+      || prevState.filterLanguages !== this.state.filterLanguages) { 
+      const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, this.getFilterAndSorts())
+      this.setState({ filteredCountries });    
+    }
   }
 
   renderCountries() {
@@ -65,6 +116,10 @@ class Countries extends React.Component {
         <button onClick={() => this.setDisplayType('grid')}>Grid</button>
         <button onClick={() => this.setDisplayType('table')}>Table</button>
         <CountrySearch onSearch={this.searchCountries} />
+        <CountrySelectFilter label="Region" values={this.state.regions} onFilterChange={this.filterCountriesByRegion} addAll />
+        <CountrySelectFilter label="Region" values={this.state.subregions} onFilterChange={this.filterCountriesBySubregion} addAll />
+        <CountrySelectFilter label="Language" values={this.state.languages} onFilterChange={this.filterCountriesByLanguage} addAll />
+        <CountrySelectFilter label="Regional bloc" values={this.state.regionalBlocs} onFilterChange={this.filterCountriesByRegionalBloc} addAll />        
         {this.renderCountries()}
       </section>
     );
