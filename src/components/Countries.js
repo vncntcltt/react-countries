@@ -1,11 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import { COUNTRIES_DISPLAY_TYPES, setCountryDisplayType } from '../actions';
 import countryApi from '../api/countryApi';
 import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
 import CountrySearch from './CountrySearch';
 import CountrySelectFilter from './CountrySelectFilter';
+import CountryDisplayType from './CountryDisplayType';
+
+const mapStateToProps = state => {
+  return {
+    displayType: state.countriesDisplayType
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setDisplayType: displayType => {
+      dispatch(setCountryDisplayType(displayType))
+    }
+  };
+};
 
 class Countries extends React.Component {
 
@@ -18,7 +35,6 @@ class Countries extends React.Component {
     subregions: [],
     languages: [],
     regionalBlocs: [],
-    displayType: 'map',
     filterRegion: null,
     filterSubregion: null,
     filterRegionalBloc: null,
@@ -32,22 +48,22 @@ class Countries extends React.Component {
 
   filterCountriesByRegion = filterRegion => {
     this.setState({ filterRegion });
-  }
+  };
 
   filterCountriesBySubregion = filterSubregion => {
     this.setState({ filterSubregion });
-  }
+  };
 
   filterCountriesByLanguage = filterLanguages => {
     this.setState({ filterLanguages });    
-  }
+  };
 
   filterCountriesByRegionalBloc = filterRegionalBloc => {
     this.setState({ filterRegionalBloc });
-  }
-
-  setDisplayType = (displayType) => {
-    this.setState({ displayType });
+  };
+  
+  setDisplayType = e => {
+    this.props.setDisplayType(e.target.value);
   };
 
   getFilterAndSorts() {
@@ -97,14 +113,15 @@ class Countries extends React.Component {
   }
 
   renderCountries() {
-    switch(this.state.displayType) {
-      case 'grid':
+    switch(this.props.displayType) {
+      case COUNTRIES_DISPLAY_TYPES.GRID:
         return <CountryGrid countries={this.state.filteredCountries} />;
-      case 'table':
+      case COUNTRIES_DISPLAY_TYPES.TABLE:
         return <CountryDatatable countries={this.state.filteredCountries} />;
-      case 'map':
-      default:
+      case COUNTRIES_DISPLAY_TYPES.MAP:
         return <CountryMap countries={this.state.filteredCountries} />
+      default:
+        console.error('Unknownw display type', this.props.displayType);
     }
   }
 
@@ -112,9 +129,7 @@ class Countries extends React.Component {
     return (      
       <section>
         <header>Countries</header>
-        <button onClick={() => this.setDisplayType('map')}>Map</button>
-        <button onClick={() => this.setDisplayType('grid')}>Grid</button>
-        <button onClick={() => this.setDisplayType('table')}>Table</button>
+        <CountryDisplayType onChange={this.setDisplayType} />
         <CountrySearch onSearch={this.searchCountries} />
         <CountrySelectFilter label="Region" values={this.state.regions} onFilterChange={this.filterCountriesByRegion} addAll />
         <CountrySelectFilter label="Region" values={this.state.subregions} onFilterChange={this.filterCountriesBySubregion} addAll />
@@ -126,4 +141,4 @@ class Countries extends React.Component {
   }
 }
 
-export default Countries;
+export default connect(mapStateToProps, mapDispatchToProps)(Countries);
