@@ -1,7 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { COUNTRIES_DISPLAY_TYPES, setCountryDisplayType } from '../actions';
+import { 
+  COUNTRIES_DISPLAY_TYPES, 
+  setCountryDisplayType,
+  setAllCountries,
+  filterAndSortCountries,
+  filterCountriesByRegion,
+  filterCountriesBySubregion,
+  filterCountriesByRegionalBloc,
+  filterCountriesByLanguages,
+  filterCountriesByName,
+  resetFilters
+} from '../actions';
 import countryApi from '../api/countryApi';
 import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
@@ -12,14 +23,45 @@ import CountryDisplayType from './CountryDisplayType';
 
 const mapStateToProps = state => {
   return {
-    displayType: state.countriesDisplayType
+    countries: state.countries.all,
+    regions: state.countries.regions,
+    subregions: state.countries.subregions,
+    languages: state.countries.languages,
+    regionalBlocs: state.countries.regionalBlocs,
+    filteredCountries: state.countries.filtered,
+    displayType: state.countries.displayType,
+    sortAndFilters: state.sortAndFilters
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    setAllCountries: countries => {
+      dispatch(setAllCountries(countries))
+    },
+    filterAndSortCountries: filteredCountries => {
+      dispatch(filterAndSortCountries(filteredCountries))
+    },
     setDisplayType: displayType => {
       dispatch(setCountryDisplayType(displayType))
+    },
+    filterCountriesByRegion: region => {
+      dispatch(filterCountriesByRegion(region))
+    },
+    filterCountriesBySubregion: subregion => {
+      dispatch(filterCountriesBySubregion(subregion))
+    },
+    filterCountriesByRegionalBloc: regionalBloc => {
+      dispatch(filterCountriesByRegionalBloc(regionalBloc))
+    },
+    filterCountriesByLanguages: languages => {
+      dispatch(filterCountriesByLanguages(languages))
+    },
+    filterCountriesByName: name => {
+      dispatch(filterCountriesByName(name))
+    },
+    resetFilters: () => {
+      dispatch(resetFilters())
     }
   };
 };
@@ -28,69 +70,23 @@ class Countries extends React.Component {
 
   state = {
     error: null,
-    isLoaded: false,
-    countries: [],
-    filteredCountries: [],
-    regions: [],
-    subregions: [],
-    languages: [],
-    regionalBlocs: [],
-    filterRegion: null,
-    filterSubregion: null,
-    filterRegionalBloc: null,
-    filterLanguages: null,
-    filterName: null
+    isLoaded: false
   };
 
-  searchCountries = filterName => {
-    this.setState({ filterName });
-  };
+  formRef = React.createRef()
 
-  filterCountriesByRegion = filterRegion => {
-    this.setState({ filterRegion });
-  };
-
-  filterCountriesBySubregion = filterSubregion => {
-    this.setState({ filterSubregion });
-  };
-
-  filterCountriesByLanguage = filterLanguages => {
-    this.setState({ filterLanguages });    
-  };
-
-  filterCountriesByRegionalBloc = filterRegionalBloc => {
-    this.setState({ filterRegionalBloc });
-  };
-  
-  setDisplayType = e => {
-    this.props.setDisplayType(e.target.value);
-  };
-
-  getFilterAndSorts() {
-    return {
-      filterRegion: this.state.filterRegion,
-      filterSubregion: this.state.filterSubregion,
-      filterLanguages: this.state.filterLanguages,
-      filterRegionalBloc: this.state.filterRegionalBloc,
-      filterName: this.state.filterName
-    };
+  resetFilters = () => {
+    this.formRef.current.reset();
+    this.props.resetFilters();
   }
 
   componentDidMount() {
     countryApi.getCountries()
       .then(res => res.json())
       .then(
-        (result) => {
-          const regionData = countryApi.buildRegionData(result)
-          this.setState({
-            isLoaded: true,
-            countries: result,
-            filteredCountries: result,
-            regions: regionData.regions,
-            subregions: regionData.subregions,
-            regionalBlocs: regionData.regionalBlocs, 
-            languages: regionData.languages
-          });
+        (countries) => {
+          const regionData = countryApi.buildRegionData(countries);          
+          this.props.setAllCountries({ countries, ...regionData });
         },
         (error) => {
           this.setState({
@@ -102,26 +98,22 @@ class Countries extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.filterName !== this.state.filterName
-      || prevState.filterRegion !== this.state.filterRegion
-      || prevState.filterSubregion !== this.state.filterSubregion
-      || prevState.filterRegionalBloc !== this.state.filterRegionalBloc      
-      || prevState.filterLanguages !== this.state.filterLanguages) { 
-      const filteredCountries = countryApi.filterAndSortCountries(this.state.countries, this.getFilterAndSorts())
-      this.setState({ filteredCountries });    
+    if (prevProps.sortAndFilters !== this.props.sortAndFilters) {
+      const filteredCountries = countryApi.filterAndSortCountries(this.props.countries, this.props.sortAndFilters);
+      this.props.filterAndSortCountries(filteredCountries);
     }
   }
 
   renderCountries() {
     switch(this.props.displayType) {
       case COUNTRIES_DISPLAY_TYPES.GRID:
-        return <CountryGrid countries={this.state.filteredCountries} />;
+        return <CountryGrid countries={this.props.filteredCountries} />;
       case COUNTRIES_DISPLAY_TYPES.TABLE:
-        return <CountryDatatable countries={this.state.filteredCountries} />;
+        return <CountryDatatable countries={this.props.filteredCountries} />;
       case COUNTRIES_DISPLAY_TYPES.MAP:
-        return <CountryMap countries={this.state.filteredCountries} />
+        return <CountryMap countries={this.props.filteredCountries} />
       default:
-        console.error('Unknownw display type', this.props.displayType);
+        console.error('Unknown display type', this.props.displayType);
     }
   }
 
@@ -129,12 +121,36 @@ class Countries extends React.Component {
     return (      
       <section>
         <header>Countries</header>
-        <CountryDisplayType onChange={this.setDisplayType} />
-        <CountrySearch onSearch={this.searchCountries} />
-        <CountrySelectFilter label="Region" values={this.state.regions} onFilterChange={this.filterCountriesByRegion} addAll />
-        <CountrySelectFilter label="Region" values={this.state.subregions} onFilterChange={this.filterCountriesBySubregion} addAll />
-        <CountrySelectFilter label="Language" values={this.state.languages} onFilterChange={this.filterCountriesByLanguage} addAll />
-        <CountrySelectFilter label="Regional bloc" values={this.state.regionalBlocs} onFilterChange={this.filterCountriesByRegionalBloc} addAll />        
+        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
+        <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
+        <form ref={this.formRef}>
+          <label>Filters:   </label>
+          <CountrySelectFilter 
+            label="Region" 
+            values={this.props.regions} 
+            onFilterChange={region => this.props.filterCountriesByRegion(region)} 
+            addAll 
+          />
+          <CountrySelectFilter 
+            label="Subregion" 
+            values={this.props.subregions} 
+            onFilterChange={subregion => this.props.filterCountriesBySubregion(subregion)} 
+            addAll 
+          />
+          <CountrySelectFilter 
+            label="Language" 
+            values={this.props.languages} 
+            onFilterChange={languages => this.props.filterCountriesByLanguages(languages)} 
+            addAll 
+          />
+          <CountrySelectFilter 
+            label="Regional bloc" 
+            values={this.props.regionalBlocs} 
+            onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
+            addAll 
+          />
+          <button type="button" onClick={this.resetFilters}>Reset</button>
+        </form>
         {this.renderCountries()}
       </section>
     );
