@@ -1,43 +1,56 @@
 import { combineReducers } from 'redux';
 
 import { 
-  COUNTRIES_SET_DISPLAY_TYPE, 
+  SET_COUNTRIES_DISPLAY_TYPE, 
   COUNTRIES_DISPLAY_TYPES,
-  COUNTRIES_SET_ALL,
-  COUNTRIES_FILTER_AND_SORT,
+  FILTER_AND_SORT_COUNTRIES,
   FILTER_COUNTRIES_BY_REGION,
   FILTER_COUNTRIES_BY_REGIONAL_BLOC,
   FILTER_COUNTRIES_BY_SUBREGION,
   FILTER_COUNTRIES_BY_LANGUAGES,
   FILTER_COUNTRIES_BY_NAME,
-  RESET_FILTERS
+  RESET_FILTERS,
+  FETCH_COUNTRIES_REQUEST,
+  FETCH_COUNTRIES_SUCCESS,
+  FETCH_COUNTRIES_FAILURE
 } from '../actions';
 
-const initialCountriesState = {  
+const initialCountriesState = {
   all: [],
   filtered: [],
   regions: [],
   subregions: [],
   languages: [],
   regionalBlocs: [],
-  displayType: COUNTRIES_DISPLAY_TYPES.MAP
+  displayType: COUNTRIES_DISPLAY_TYPES.MAP,
+  loading: null,
+  error: null
 };
 
 const countries = (state = initialCountriesState, action) => {
   switch (action.type) {
-    case COUNTRIES_SET_DISPLAY_TYPE:
-      return {...state, displayType: action.displayType };
-    case COUNTRIES_SET_ALL:
+    case FETCH_COUNTRIES_REQUEST:
+      return { ...state, loading: true, error: null };
+    case FETCH_COUNTRIES_SUCCESS:
       return {
-        ...state, 
+        ...state,
+        loading: false,
         all: action.countries, 
         filtered: action.countries, 
         regions: action.regions, 
         subregions: action.subregions,
         languages: action.languages,
-        regionalBlocs: action.regionalBlocs
+        regionalBlocs: action.regionalBlocs      
       };
-    case COUNTRIES_FILTER_AND_SORT:
+    case  FETCH_COUNTRIES_FAILURE:
+      return { 
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    case SET_COUNTRIES_DISPLAY_TYPE:
+      return { ...state, displayType: action.displayType };
+    case FILTER_AND_SORT_COUNTRIES:
       return  {...state, filtered: action.filteredCountries };
     default:
       return state;

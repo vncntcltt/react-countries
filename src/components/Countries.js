@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { 
-  COUNTRIES_DISPLAY_TYPES, 
+  COUNTRIES_DISPLAY_TYPES,
+  fetchCountries,
   setCountryDisplayType,
-  setAllCountries,
   filterAndSortCountries,
   filterCountriesByRegion,
   filterCountriesBySubregion,
@@ -13,7 +13,6 @@ import {
   filterCountriesByName,
   resetFilters
 } from '../actions';
-import countryApi from '../api/countryApi';
 import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
@@ -28,6 +27,8 @@ const mapStateToProps = state => {
     subregions: state.countries.subregions,
     languages: state.countries.languages,
     regionalBlocs: state.countries.regionalBlocs,
+    loading: state.countries.loading,
+    error: state.countries.error,
     filteredCountries: state.countries.filtered,
     displayType: state.countries.displayType,
     sortAndFilters: state.sortAndFilters
@@ -36,11 +37,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    setAllCountries: countries => {
-      dispatch(setAllCountries(countries))
+    fetchCountries: () => {
+      dispatch(fetchCountries())
     },
-    filterAndSortCountries: filteredCountries => {
-      dispatch(filterAndSortCountries(filteredCountries))
+    filterAndSortCountries: (countries, sortAndFilters) => {
+      dispatch(filterAndSortCountries(countries, sortAndFilters))
     },
     setDisplayType: displayType => {
       dispatch(setCountryDisplayType(displayType))
@@ -68,11 +69,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 class Countries extends React.Component {
 
-  state = {
-    error: null,
-    isLoaded: false
-  };
-
   formRef = React.createRef()
 
   resetFilters = () => {
@@ -81,26 +77,12 @@ class Countries extends React.Component {
   }
 
   componentDidMount() {
-    countryApi.getCountries()
-      .then(res => res.json())
-      .then(
-        (countries) => {
-          const regionData = countryApi.buildRegionData(countries);          
-          this.props.setAllCountries({ countries, ...regionData });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.props.fetchCountries();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.sortAndFilters !== this.props.sortAndFilters) {
-      const filteredCountries = countryApi.filterAndSortCountries(this.props.countries, this.props.sortAndFilters);
-      this.props.filterAndSortCountries(filteredCountries);
+      this.props.filterAndSortCountries(this.props.countries, this.props.sortAndFilters);
     }
   }
 
@@ -121,10 +103,10 @@ class Countries extends React.Component {
     return (      
       <section>
         <header>Countries</header>
-        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
-        <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
-        <form ref={this.formRef}>
+        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />        
+        <form ref={this.formRef}>          
           <label>Filters:   </label>
+          <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
           <CountrySelectFilter 
             label="Region" 
             values={this.props.regions} 
@@ -151,7 +133,7 @@ class Countries extends React.Component {
           />
           <button type="button" onClick={this.resetFilters}>Reset</button>
         </form>
-        {this.renderCountries()}
+        {this.props.loading ? <span>Loading....</span> : this.renderCountries()}
       </section>
     );
   }

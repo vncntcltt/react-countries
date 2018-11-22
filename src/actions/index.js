@@ -1,6 +1,10 @@
-export const COUNTRIES_SET_DISPLAY_TYPE = 'COUNTRIES_SET_DISPLAY_TYPE';
-export const COUNTRIES_SET_ALL = 'COUNTRIES_SET_ALL';
-export const COUNTRIES_FILTER_AND_SORT = 'COUNTRIES_FILTER_AND_SORT';
+import countryApi from '../api/countryApi';
+
+export const FETCH_COUNTRIES_REQUEST = 'FETCH_COUNTRIES_REQUEST';
+export const FETCH_COUNTRIES_SUCCESS = 'FETCH_COUNTRIES_SUCCESS';
+export const FETCH_COUNTRIES_FAILURE = 'FETCH_COUNTRIES_FAILURE';
+export const SET_COUNTRIES_DISPLAY_TYPE = 'SET_COUNTRIES_DISPLAY_TYPE';
+export const FILTER_AND_SORT_COUNTRIES = 'FILTER_AND_SORT_COUNTRIES';
 export const FILTER_COUNTRIES_BY_REGION = 'FILTER_COUNTRIES_BY_REGION';
 export const FILTER_COUNTRIES_BY_SUBREGION = 'FILTER_COUNTRIES_BY_SUBREGION';
 export const FILTER_COUNTRIES_BY_REGIONAL_BLOC = 'FILTER_COUNTRIES_BY_REGIONAL_BLOC';
@@ -14,13 +18,12 @@ export const COUNTRIES_DISPLAY_TYPES = {
   TABLE: 'table'
 };
 
-export const setCountryDisplayType = displayType => ({
-  type: COUNTRIES_SET_DISPLAY_TYPE,
-  displayType
+export const fetchCountriesRequest = () => ({
+  type: FETCH_COUNTRIES_REQUEST
 });
 
-export const setAllCountries = ({ countries, regions, subregions, languages, regionalBlocs })  => ({
-  type: COUNTRIES_SET_ALL,
+export const fetchCountriesSuccess = ({ countries, regions, subregions, languages, regionalBlocs }) => ({
+  type: FETCH_COUNTRIES_SUCCESS,
   countries,
   regions,
   subregions,
@@ -28,10 +31,40 @@ export const setAllCountries = ({ countries, regions, subregions, languages, reg
   regionalBlocs
 });
 
-export const filterAndSortCountries = filteredCountries => ({
-  type: COUNTRIES_FILTER_AND_SORT,
-  filteredCountries
+export const fetchCountriesFailure = error => ({
+  type: FETCH_COUNTRIES_FAILURE,
+  error
 });
+
+export const fetchCountries = () => {
+  return dispatch => {
+    dispatch(fetchCountriesRequest());
+    countryApi.getCountries()
+      .then(res => res.json())
+      .then(
+        countries => {
+          const regionData = countryApi.buildRegionData(countries);
+          dispatch(fetchCountriesSuccess({ countries, ...regionData }));
+        },
+        error => {
+          dispatch(fetchCountriesFailure(error));
+        }
+      );  
+  };
+};
+
+export const setCountryDisplayType = displayType => ({
+  type: SET_COUNTRIES_DISPLAY_TYPE,
+  displayType
+});
+
+export const filterAndSortCountries = (countries, filterAndSorts) => {
+  const filteredCountries = countryApi.filterAndSortCountries(countries, filterAndSorts);
+  return {
+    type: FILTER_AND_SORT_COUNTRIES,
+    filteredCountries
+  };
+};
 
 export const filterCountriesByRegion = filterRegion => ({
   type: FILTER_COUNTRIES_BY_REGION,
