@@ -11,11 +11,17 @@ export const FILTER_COUNTRIES_BY_REGIONAL_BLOC = 'FILTER_COUNTRIES_BY_REGIONAL_B
 export const FILTER_COUNTRIES_BY_LANGUAGES = 'FILTER_COUNTRIES_BY_LANGUAGES';
 export const FILTER_COUNTRIES_BY_NAME = 'FILTER_COUNTRIES_BY_NAME';
 export const RESET_FILTERS = 'RESET_FILTERS';
+export const SET_SETTINGS_UNIT = 'SET_SETTINGS_UNIT'; 
 
 export const COUNTRIES_DISPLAY_TYPES = {
   MAP: 'map',
   GRID: 'grid',
   TABLE: 'table'
+};
+
+export const SETTINGS_UNIT_TYPES = {
+  METRIC: 'metric',
+  IMPERIAL: 'imperial'
 };
 
 export const fetchCountriesRequest = () => ({
@@ -95,3 +101,8 @@ export const resetFilters = () => ({
   type: RESET_FILTERS  
 });
 
+
+export const setSettingsUnit = unit => ({
+  type: SET_SETTINGS_UNIT,
+  unit
+});

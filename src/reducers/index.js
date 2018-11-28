@@ -12,7 +12,9 @@ import {
   RESET_FILTERS,
   FETCH_COUNTRIES_REQUEST,
   FETCH_COUNTRIES_SUCCESS,
-  FETCH_COUNTRIES_FAILURE
+  FETCH_COUNTRIES_FAILURE,
+  SET_SETTINGS_UNIT,
+  SETTINGS_UNIT_TYPES
 } from '../actions';
 
 const initialCountriesState = {
@@ -83,4 +85,17 @@ const sortAndFilters = (state = initialSortAndFiltersState, action) => {
   }
 }
 
-export default combineReducers({ countries, sortAndFilters });
+const initialSettingsState = {
+  unit: SETTINGS_UNIT_TYPES.METRIC
+};
+
+const settings = (state = initialSettingsState, action) => {
+  switch(action.type) {
+    case SET_SETTINGS_UNIT:
+      return { ...state, unit: action.unit };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ countries, sortAndFilters, settings });

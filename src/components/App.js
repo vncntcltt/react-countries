@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Countries from './Countries';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import Settings from './Settings';
 import About from './About';
 
 const App = () => {
@@ -16,9 +17,8 @@ const App = () => {
           <Route exact path="/">
             <Redirect to="/countries" />
           </Route>
-          
           <Route exact path="/countries" component={Countries} />
-
+          <Route exact path="/settings" component={Settings} />
           <Route exact path="/about" component={About} />
         </Switch>
 
