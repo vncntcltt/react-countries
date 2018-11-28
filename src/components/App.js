@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import Countries from './Countries';
 import Footer from './Footer';
@@ -12,13 +12,15 @@ const App = () => {
       <>
         <Navbar />
 
-        <Route exact path="/">
-          <Redirect to="/countries" />
-        </Route>
-        
-        <Route exact path="/countries" component={Countries} />
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/countries" />
+          </Route>
+          
+          <Route exact path="/countries" component={Countries} />
 
-        <Route exact path="/about" component={About} />
+          <Route exact path="/about" component={About} />
+        </Switch>
 
         <Footer />
       </>
