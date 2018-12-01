@@ -1,10 +1,16 @@
 import React from 'react';
+import { array, func } from 'prop-types';
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 
 import countriesGeoJson from '../assets/countries.geo.json'
 
 class CountryMap extends React.Component {
+
+  static propTypes = {
+    countries: array,
+    onCountrySelected: func.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -40,10 +46,10 @@ class CountryMap extends React.Component {
       onEachFeature: (feature, layer) => {
         const featureCountry = this.props.countries.find(
           country => country.alpha3Code === feature.id
-        )
+        );
         layer.on('click', e => {
           if (featureCountry) {
-            //this.props.onCountrySelected(featureCountry);
+            this.props.onCountrySelected(featureCountry);
           }
         })
         layer.bindTooltip('<strong>' + featureCountry.name + '</strong>')

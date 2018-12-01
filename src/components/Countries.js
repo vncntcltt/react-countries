@@ -17,7 +17,7 @@ import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
 import CountryBreadcrumb from './CountryBreadcrumb';
-
+import CountryDetailsModal from './CountryDetailsModal';
 
 const mapStateToProps = state => {
   return {
@@ -46,6 +46,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class Countries extends React.Component {
 
+  state = {
+    selectedCountryDetails: null
+  };
+
   componentDidMount() {
     this.props.fetchCountries();
   }
@@ -53,11 +57,19 @@ class Countries extends React.Component {
   renderCountries() {
     switch(this.props.displayType) {
       case COUNTRIES_DISPLAY_TYPES.GRID:
-        return <CountryGrid countries={this.props.filteredCountries} />;
+        return <CountryGrid 
+          countries={this.props.filteredCountries} 
+        />;
       case COUNTRIES_DISPLAY_TYPES.TABLE:
-        return <CountryDatatable countries={this.props.filteredCountries} />;
+        return <CountryDatatable 
+          countries={this.props.filteredCountries}
+          onCountrySelected={country => this.setState({ selectedCountryDetails: country })}
+        />;
       case COUNTRIES_DISPLAY_TYPES.MAP:
-        return <CountryMap countries={this.props.filteredCountries} />
+        return <CountryMap 
+          countries={this.props.filteredCountries} 
+          onCountrySelected={country => this.setState({ selectedCountryDetails: country })}
+        />
       default:
         console.error('Unknown display type', this.props.displayType);
     }
@@ -79,6 +91,11 @@ class Countries extends React.Component {
             />   
             <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
             {this.props.loading ? <span>Loading....</span> : this.renderCountries()}
+            <CountryDetailsModal
+              show={!!this.state.selectedCountryDetails}
+              onHide={() => this.setState({ selectedCountryDetails: null })}
+              country={this.state.selectedCountryDetails}
+            />
           </Col>
         </Row>
       </Container>

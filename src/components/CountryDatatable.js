@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/lib/Table';
 
 import CountryDataRow from './CountryDataRow';
 
-const CountryDatatable = ({ countries }) => {
+const CountryDatatable = ({ countries, onCountrySelected }) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -20,7 +20,11 @@ const CountryDatatable = ({ countries }) => {
       </thead>
       <tbody>
         {countries.map(country =>
-          <CountryDataRow key={country.alpha3Code} country={country} />
+          <CountryDataRow 
+            key={country.alpha3Code} 
+            country={country} 
+            onCountrySelected={country => onCountrySelected(country)}
+          />
         )}
       </tbody>
     </Table>

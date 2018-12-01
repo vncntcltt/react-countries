@@ -3,10 +3,10 @@ import { string, number } from 'prop-types'
 
 import UnitDisplay from './UnitDisplay';
 
-const CountryDataRow = ({ country }) => {
+const CountryDataRow = ({ country, onCountrySelected }) => {
   const { name, alpha3Code, capital, region, subregion, population, area } = country;
   return (
-    <tr>
+    <tr onClick={() => onCountrySelected(country)}>
       <td>{name}</td>
       <td>{alpha3Code}</td>
       <td>{capital}</td>
