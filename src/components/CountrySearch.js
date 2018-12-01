@@ -1,8 +1,9 @@
 import React from 'react';
 import { func } from "prop-types";
+import Form from 'react-bootstrap/lib/Form';
 
 const CountrySearch = ({ onSearch }) => {
-  return <input onChange={e => onSearch(e.target.value)} placeholder="Search countries..." />;
+  return <Form.Control onChange={e => onSearch(e.target.value)} placeholder="Search countries..." />;
 };
 
 CountrySearch.propTypes = {

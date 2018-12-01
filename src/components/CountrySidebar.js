@@ -5,11 +5,9 @@ import Button from 'react-bootstrap/lib/Button';
 
 import CountrySearch from './CountrySearch';
 import CountrySelectFilter from './CountrySelectFilter';
-import CountryDisplayType from './CountryDisplayType';
-import CountryBreadcrumb from './CountryBreadcrumb';
 
-import { 
-  setCountryDisplayType,
+
+import {   
   filterAndSortCountries,
   filterCountriesByRegion,
   filterCountriesBySubregion,
@@ -35,9 +33,6 @@ const mapDispatchToProps = (dispatch) => {
     filterAndSortCountries: (countries, sortAndFilters) => {
       dispatch(filterAndSortCountries(countries, sortAndFilters))
     },
-    setDisplayType: displayType => {
-      dispatch(setCountryDisplayType(displayType))
-    },
     filterCountriesByRegion: region => {
       dispatch(filterCountriesByRegion(region))
     },
@@ -59,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class CountryToolbar extends React.Component {
+class CountrySidebar extends React.Component {
 
   formRef = React.createRef()
 
@@ -76,14 +71,8 @@ class CountryToolbar extends React.Component {
   
   render() {
     return (
-      <>
-        <CountryBreadcrumb 
-          region={this.props.sortAndFilters.filterRegion} 
-          subregion={this.props.sortAndFilters.filterSubregion} 
-          onNavigateToWorld={() => this.props.filterCountriesByRegion('')}
-          onNavigateToRegion={() => this.props.filterCountriesBySubregion('')}
-        />        
-        <Form inline ref={this.formRef}>          
+      <>    
+        <Form ref={this.formRef} className="py-3">
           <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
           <CountrySelectFilter 
             label="Region" 
@@ -109,12 +98,11 @@ class CountryToolbar extends React.Component {
             onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
             addAll 
           />
-          <Button variant="primary" type="submit" onClick={this.resetFilters}>Reset</Button>
-        </Form>
-        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
+          <Button variant="primary" onClick={this.resetFilters}>Reset filters</Button>
+        </Form>        
       </>
     );   
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountryToolbar);
+export default connect(mapStateToProps, mapDispatchToProps)(CountrySidebar);

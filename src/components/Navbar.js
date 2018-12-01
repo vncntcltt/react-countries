@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 
-const CountriesNavbar = () => {
+const MainNavbar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Navbar.Brand href="/countries">Countries</Navbar.Brand>
@@ -14,4 +14,4 @@ const CountriesNavbar = () => {
   );
 };
 
-export default CountriesNavbar;
+export default MainNavbar;
