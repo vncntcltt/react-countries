@@ -1,22 +1,17 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import Navbar from 'react-bootstrap/lib/Navbar';
+import Nav from 'react-bootstrap/lib/Nav';
 
-const Navbar = () => {
+const CountriesNavbar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/countries">Countries</Link>
-        </li>
-        <li>
-          <Link to="/settings">Settings</Link>
-        </li>        
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+      <Navbar.Brand href="/countries">Countries</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link href="/settings">Settings</Nav.Link>
+        <Nav.Link href="/about">About</Nav.Link>
+      </Nav>    
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CountriesNavbar;

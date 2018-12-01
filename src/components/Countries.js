@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Form from 'react-bootstrap/lib/Form';
+import Button from 'react-bootstrap/lib/Button';
 
 import { 
   COUNTRIES_DISPLAY_TYPES,
@@ -19,6 +21,7 @@ import CountryMap from './CountryMap';
 import CountrySearch from './CountrySearch';
 import CountrySelectFilter from './CountrySelectFilter';
 import CountryDisplayType from './CountryDisplayType';
+import CountryBreadcrumb from './CountryBreadcrumb';
 
 const mapStateToProps = state => {
   return {
@@ -102,10 +105,14 @@ class Countries extends React.Component {
   render() {
     return (      
       <section>
-        <header>Countries</header>
-        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />        
-        <form ref={this.formRef}>          
-          <label>Filters:   </label>
+        <CountryBreadcrumb 
+          region={this.props.sortAndFilters.filterRegion} 
+          subregion={this.props.sortAndFilters.filterSubregion} 
+          onNavigateToWorld={() => this.props.filterCountriesByRegion('')}
+          onNavigateToRegion={() => this.props.filterCountriesBySubregion('')}
+        />
+        <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
+        <Form inline ref={this.formRef}>          
           <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
           <CountrySelectFilter 
             label="Region" 
@@ -131,8 +138,8 @@ class Countries extends React.Component {
             onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
             addAll 
           />
-          <button type="button" onClick={this.resetFilters}>Reset</button>
-        </form>
+          <Button variant="primary" type="submit" onClick={this.resetFilters}>Reset</Button>
+        </Form>
         {this.props.loading ? <span>Loading....</span> : this.renderCountries()}
       </section>
     );

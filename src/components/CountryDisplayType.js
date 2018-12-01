@@ -1,14 +1,15 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 
-function CountryDisplayType(props) {
+const CountryDisplayType = ({ onChange }) => {
   return (
-    <>
-      <label>Display type: </label>
-      <button value='map' onClick={props.onChange}>Map</button>
-      <button value='grid' onClick={props.onChange}>Grid</button>
-      <button value='table' onClick={props.onChange}>Table</button>
-    </>
+    <ButtonGroup>
+      <Button value='map' onClick={onChange}>Map</Button>
+      <Button value='grid' onClick={onChange}>Grid</Button>
+      <Button value='table' onClick={onChange}>Table</Button>
+    </ButtonGroup>
   );
-}
+};
 
 export default CountryDisplayType;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { number } from 'prop-types';
 import { connect } from "react-redux";
 
@@ -8,12 +7,12 @@ const mapStateToProps = state => ({
   selectedUnit: state.settings.unit
 });
 
-const UnitDisplay = props => {
-  let value = props.value;
-  if (props.selectedUnit === SETTINGS_UNIT_TYPES.IMPERIAL) {
-    value = Math.round(value / 2,59);
+const UnitDisplay = ({ value, selectedUnit }) => {
+  let val = value;
+  if (selectedUnit === SETTINGS_UNIT_TYPES.IMPERIAL) {
+    val = Math.round(val / 2,59);
   }
-  return <>{value}</>;
+  return val;
 };
 
 UnitDisplay.propTypes = {

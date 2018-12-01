@@ -3,8 +3,8 @@ import { string, number } from 'prop-types'
 
 import UnitDisplay from './UnitDisplay';
 
-const CountryDataRow = props => {
-  const { name, alpha3Code, capital, region, subregion, population, area } = props.country;
+const CountryDataRow = ({ country }) => {
+  const { name, alpha3Code, capital, region, subregion, population, area } = country;
   return (
     <tr>
       <td>{name}</td>

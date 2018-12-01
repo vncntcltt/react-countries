@@ -1,5 +1,6 @@
 import React from 'react';
 import { func, array, bool, string } from 'prop-types';
+import Form from 'react-bootstrap/lib/Form';
 
 class CountrySelectFilter extends React.Component {
 
@@ -23,15 +24,15 @@ class CountrySelectFilter extends React.Component {
 
   render() {
     return (
-    <span>
-      <label>{this.props.label}</label>
-      <select onChange={this.onFilterChange}>
-      {this.props.addAll ? <option value="">All</option> : ''}
-      {this.props.values.map(val => 
-        <option key={val} value={val}>{val}</option>
-      )}
-      </select>
-    </span>
+      <Form.Group>
+        <Form.Label>{this.props.label}</Form.Label>
+        <Form.Control as="select" onChange={this.onFilterChange}>
+        {this.props.addAll ? <option value="">All</option> : ''}
+        {this.props.values.map(val => 
+          <option key={val} value={val}>{val}</option>
+        )}
+        </Form.Control>
+      </Form.Group>
     );
   }
 

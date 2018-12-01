@@ -1,11 +1,12 @@
 import React from 'react';
 import { array } from 'prop-types';
+import Table from 'react-bootstrap/lib/Table';
 
 import CountryDataRow from './CountryDataRow';
 
-const CountryDatatable = props => {
+const CountryDatatable = ({ countries }) => {
   return (
-    <table>
+    <Table striped bordered hover>
       <thead>
         <tr>
           <th>Name</th>
@@ -18,11 +19,11 @@ const CountryDatatable = props => {
         </tr>
       </thead>
       <tbody>
-        {props.countries.map(country =>
+        {countries.map(country =>
           <CountryDataRow key={country.alpha3Code} country={country} />
         )}
       </tbody>
-    </table>
+    </Table>
   );
 }
 

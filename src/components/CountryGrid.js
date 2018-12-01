@@ -1,17 +1,22 @@
 import React from 'react';
 import { array } from 'prop-types';
+import Container from 'react-bootstrap/lib/Container';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
 
 import CountryCard from './CountryCard';
 
-const CountryGrid = props => {
+const CountryGrid = ({ countries }) => {
   return (
-    <ul>
-    {props.countries.map(country => 
-      <li key={country.alpha3Code}>
-        <CountryCard country={country} />
-      </li> 
-    )}
-    </ul>
+    <Container fluid>
+      <Row>
+        {countries.map(country => 
+          <Col key={country.alpha3Code}>
+            <CountryCard country={country} />
+          </Col> 
+        )}
+      </Row>
+    </Container>
   );
 }
 

@@ -1,19 +1,12 @@
 import React from 'react';
+import { func } from "prop-types";
 
-class CountrySearch extends React.Component {
+const CountrySearch = ({ onSearch }) => {
+  return <input onChange={e => onSearch(e.target.value)} placeholder="Search countries..." />;
+};
 
-  handleOnChange = (e) => {
-    if (this.props.onSearch) {
-      this.props.onSearch(e.target.value);
-    }
-  }
+CountrySearch.propTypes = {
+  onSearch: func.isRequired
+};
 
-  render() {
-    return (
-      <input onChange={this.handleOnChange} placeholder="Search countries..." />
-    )
-  }
-
-}
-
-export default CountrySearch
+export default CountrySearch;
