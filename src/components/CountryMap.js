@@ -59,7 +59,7 @@ class CountryMap extends React.Component {
   }
 
   render() {
-    const mapStyle = { width: 800, height: 600 };
+    const mapStyle = { width: "100%", minHeight: 800 };
     return <div id="map" style={mapStyle} />;
   }
 
