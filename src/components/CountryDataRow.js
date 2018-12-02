@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number } from 'prop-types'
+import PropTypes from 'prop-types';
 
 import UnitDisplay from './UnitDisplay';
 
@@ -19,13 +19,16 @@ const CountryDataRow = ({ country, onCountrySelected }) => {
 }
 
 CountryDataRow.propTypes = {
-  name: string,
-  alpha3Code: string,
-  capital: string,
-  region: string,
-  subregion: string,
-  population: number,
-  area: number
+  country: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    alpha3Code: PropTypes.string.isRequired,
+    capital: PropTypes.string,
+    region: PropTypes.string,
+    subregion: PropTypes.string,
+    population: PropTypes.number,
+    area: PropTypes.number
+  }),
+  onCountrySelected: PropTypes.func.isRequired
 };
 
 export default CountryDataRow;

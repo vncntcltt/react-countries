@@ -1,4 +1,4 @@
-import { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
 import { SETTINGS_UNIT_TYPES } from '../actions';
@@ -16,7 +16,7 @@ const UnitDisplay = ({ value, selectedUnit }) => {
 };
 
 UnitDisplay.propTypes = {
-  value: number
+  value: PropTypes.number
 };
 
 export default connect(mapStateToProps)(UnitDisplay);

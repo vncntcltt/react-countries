@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/lib/Card';
 import ListGroup from 'react-bootstrap/lib/ListGroup'
 
@@ -19,6 +20,18 @@ const CountryCard = ({ country }) => {
       </Card.Body>
     </Card>
   );
-}
+};
+
+CountryCard.propTypes = {
+  country: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    alpha3Code: PropTypes.string.isRequired,
+    capital: PropTypes.string,
+    region: PropTypes.string,
+    subregion: PropTypes.string,
+    population: PropTypes.number,
+    area: PropTypes.number
+  })
+};
 
 export default CountryCard;

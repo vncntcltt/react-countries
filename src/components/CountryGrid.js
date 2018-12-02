@@ -1,5 +1,5 @@
 import React from 'react';
-import { array } from 'prop-types';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
@@ -21,7 +21,7 @@ const CountryGrid = ({ countries }) => {
 }
 
 CountryGrid.propTypes = {
-  countries: array.isRequired
+  countries: PropTypes.array.isRequired
 }
 
 export default CountryGrid;

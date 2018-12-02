@@ -1,27 +1,28 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import Breadcrumb from 'react-bootstrap/lib/Breadcrumb';
 
 class CountryBreadcrumb extends React.Component {
 
   static propTypes = {
-    region: string,
-    subregion: string,
-    onNavigateToWorld: func.isRequired,
-    onNavigateToRegion: func.isRequired
+    region: PropTypes.string,
+    subregion: PropTypes.string,
+    onNavigateToWorld: PropTypes.func.isRequired,
+    onNavigateToRegion: PropTypes.func.isRequired
   };
 
   render() {
+    const { region, subregion, onNavigateToWorld, onNavigateToRegion } = this.props;
     return (
       <Breadcrumb>
-        <Breadcrumb.Item active={!this.props.region && !this.props.subregion} onClick={this.props.onNavigateToWorld}>
+        <Breadcrumb.Item active={!region && !subregion} onClick={onNavigateToWorld}>
           World
         </Breadcrumb.Item>
-        {this.props.region && <Breadcrumb.Item active={!this.props.subregion} onClick={this.props.onNavigateToRegion}>
-          {this.props.region}
+        {region && <Breadcrumb.Item active={!subregion} onClick={onNavigateToRegion}>
+          {region}
         </Breadcrumb.Item>}
-        {this.props.region && this.props.subregion && <Breadcrumb.Item active>
-          {this.props.subregion}
+        {region && subregion && <Breadcrumb.Item active>
+          {subregion}
         </Breadcrumb.Item>}
       </Breadcrumb>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { array, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 
@@ -8,8 +8,8 @@ import countriesGeoJson from '../assets/countries.geo.json'
 class CountryMap extends React.Component {
 
   static propTypes = {
-    countries: array,
-    onCountrySelected: func.isRequired
+    countries: PropTypes.array,
+    onCountrySelected: PropTypes.func.isRequired
   }
 
   constructor(props) {

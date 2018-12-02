@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from "prop-types";
+import PropTypes from "prop-types";
 import Form from 'react-bootstrap/lib/Form';
 
 const CountrySearch = ({ onSearch }) => {
@@ -7,7 +7,7 @@ const CountrySearch = ({ onSearch }) => {
 };
 
 CountrySearch.propTypes = {
-  onSearch: func.isRequired
+  onSearch: PropTypes.func.isRequired
 };
 
 export default CountrySearch;

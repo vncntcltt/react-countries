@@ -1,5 +1,5 @@
 import React from 'react';
-import { array } from 'prop-types';
+import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/lib/Table';
 
 import CountryDataRow from './CountryDataRow';
@@ -32,7 +32,8 @@ const CountryDatatable = ({ countries, onCountrySelected }) => {
 }
 
 CountryDatatable.propTypes = {
-  countries: array.isRequired
+  countries: PropTypes.array.isRequired,
+  onCountrySelected: PropTypes.func.isRequired
 }
 
 export default CountryDatatable;

@@ -1,14 +1,14 @@
 import React from 'react';
-import { func, array, bool, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/lib/Form';
 
 class CountrySelectFilter extends React.Component {
 
   static propTypes = {    
-    values: array.isRequired,    
-    onFilterChange: func.isRequired,
-    label: string,
-    addAll: bool
+    values: PropTypes.array.isRequired,    
+    onFilterChange: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    addAll: PropTypes.bool
   }
 
   static defaultProps = {
