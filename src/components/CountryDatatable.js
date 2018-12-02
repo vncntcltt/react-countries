@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/lib/Table';
-import Pagination from 'react-bootstrap/lib/Pagination';
 
 import CountryDataRow from './CountryDataRow';
+import Pagination from './Pagination';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -48,34 +48,14 @@ class CountryDatatable extends React.Component {
             )}
           </tbody>
         </Table>
-        {this.renderPagination(pageCount)}
+        <Pagination
+          pageCount={pageCount}
+          activePage={this.state.currentPage}
+          onPageChange={page => this.setState( {currentPage: page})}
+        />
       </>
     );
   }
-
-  renderPagination(pageCount) {
-    const pages = [];
-    for (let page = 1; page <= pageCount; page++) {
-      pages.push((
-        <Pagination.Item 
-          key={page} 
-          active={this.state.currentPage === page}
-          onClick={() => this.setState({currentPage: page})}
-        >
-          {page}
-        </Pagination.Item>
-      ));
-    }
-    return (
-      <Pagination>
-        <Pagination.First onClick={() => this.setState({currentPage: 1})} />
-        <Pagination.Prev onClick={() => this.setState({currentPage: this.state.currentPage > 1 ? this.state.currentPage - 1 : 1})} />
-        {pages}
-        <Pagination.Next onClick={() => this.setState({currentPage: this.state.currentPage < pageCount ?  this.state.currentPage + 1 : pageCount})}/>
-        <Pagination.Last onClick={() => this.setState({currentPage: pageCount})} />
-      </Pagination>
-    );
-  }  
 
 }
 
