@@ -21,7 +21,7 @@ class CountryDatatable extends React.Component {
 
   render() {
     const { countries, onCountrySelected } = this.props;
-    const pageCount = Math.floor(countries.length / ITEMS_PER_PAGE);
+    const pageCount = Math.ceil(countries.length / ITEMS_PER_PAGE);
     const countryStart = (this.state.currentPage - 1) * ITEMS_PER_PAGE;
     const currentPageCountries = countries.slice(countryStart, countryStart + ITEMS_PER_PAGE);
     return (
