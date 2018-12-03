@@ -3,27 +3,27 @@ import { connect } from 'react-redux';
 import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import { withNamespaces } from 'react-i18next';
+import Alert from 'react-bootstrap/lib/Alert';
+import { NamespacesConsumer } from 'react-i18next';
 
 import { 
   fetchCountries,
-  COUNTRIES_DISPLAY_TYPES,
-  setCountryDisplayType  ,
+  setCountryDisplayType,
+  setSelectedCountry,
   filterCountriesByRegion,
   filterCountriesBySubregion
 } from '../actions';
 import CountrySidebar from './CountrySidebar';
-import CountryDisplayType from './CountryDisplayType';
-import CountryGrid from './CountryGrid';
-import CountryDatatable from './CountryDatatable';
-import CountryMap from './CountryMap';
-import CountryBreadcrumb from './CountryBreadcrumb';
+import CountryMainView from './CountryMainView';
 import CountryDetailsModal from './CountryDetailsModal';
 
 const mapStateToProps = state => {
   return {
     filteredCountries: state.countries.filtered,
     displayType: state.countries.displayType,
+    selectedCountry: state.countries.selectedCountry,
+    loading: state.countries.loading,
+    error: state.countries.error,
     sortAndFilters: state.sortAndFilters
   };
 };
@@ -36,6 +36,9 @@ const mapDispatchToProps = (dispatch) => {
     setDisplayType: displayType => {
       dispatch(setCountryDisplayType(displayType))
     },
+    setSelectedCountry: country => {
+      dispatch(setSelectedCountry(country))
+    },
     filterCountriesByRegion: region => {
       dispatch(filterCountriesByRegion(region))
     },
@@ -47,62 +50,61 @@ const mapDispatchToProps = (dispatch) => {
 
 class Countries extends React.Component {
 
-  state = {
-    selectedCountryDetails: null
-  };
-
   componentDidMount() {
     this.props.fetchCountries();
   }
 
-  renderCountries() {
-    switch(this.props.displayType) {
-      case COUNTRIES_DISPLAY_TYPES.GRID:
-        return <CountryGrid 
-          countries={this.props.filteredCountries} 
-        />;
-      case COUNTRIES_DISPLAY_TYPES.TABLE:
-        return <CountryDatatable 
-          countries={this.props.filteredCountries}
-          onCountrySelected={country => this.setState({ selectedCountryDetails: country })}
-        />;
-      case COUNTRIES_DISPLAY_TYPES.MAP:
-        return <CountryMap 
-          countries={this.props.filteredCountries} 
-          onCountrySelected={country => this.setState({ selectedCountryDetails: country })}
-        />
-      default:
-        console.error('Unknown display type', this.props.displayType);
-    }
-  }
-
   render() {
-    const { t } = this.props;
+    const { 
+      filteredCountries,
+      displayType,
+      selectedCountry,
+      loading,
+      error,
+      sortAndFilters,
+      filterCountriesByRegion,
+      filterCountriesBySubregion,
+      setDisplayType,
+      setSelectedCountry
+    } = this.props;
     return (
-      <Container fluid as="section">
-        <Row>
-          <Col xs xl="2" md="3" className="bg-light">
-            <CountrySidebar/>
-          </Col>
-          <Col>
-            <CountryBreadcrumb 
-              region={this.props.sortAndFilters.filterRegion} 
-              subregion={this.props.sortAndFilters.filterSubregion} 
-              onNavigateToWorld={() => this.props.filterCountriesByRegion('')}
-              onNavigateToRegion={() => this.props.filterCountriesBySubregion('')}
-            />   
-            <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
-            {this.props.loading ? <span>{t('content.message.dataLoading')}</span> : this.renderCountries()}
-            <CountryDetailsModal
-              show={!!this.state.selectedCountryDetails}
-              onHide={() => this.setState({ selectedCountryDetails: null })}
-              country={this.state.selectedCountryDetails}
-            />
-          </Col>
-        </Row>
-      </Container>
+      <NamespacesConsumer>
+        {
+          t => (       
+            <Container fluid as="section" className="py-2">
+            {error
+              ? <Alert variant="danger">{error}</Alert> 
+              : (loading 
+                ? <Alert variant="info">{t('content.message.dataLoading')}</Alert> 
+                : <Row>
+                    <Col xs xl="2" md="3" className="bg-light">
+                      <CountrySidebar/>
+                    </Col>
+                    <Col>
+                      <CountryMainView 
+                        filteredCountries={filteredCountries}
+                        displayType={displayType}
+                        sortAndFilters={sortAndFilters}
+                        filterCountriesByRegion={filterCountriesByRegion}
+                        filterCountriesBySubregion={filterCountriesBySubregion}
+                        setDisplayType={setDisplayType}
+                        onCountrySelected={country => setSelectedCountry(country)}
+                      />
+                    </Col>
+                    <CountryDetailsModal
+                      show={!!selectedCountry}
+                      onHide={() => setSelectedCountry(null)}
+                      country={selectedCountry}
+                    />
+                  </Row>
+              )
+            }
+            </Container>
+          )
+        }
+      </NamespacesConsumer>
     );
   }
 }
 
-export default withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(Countries));
+export default connect(mapStateToProps, mapDispatchToProps)(Countries);

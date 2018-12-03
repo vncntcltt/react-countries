@@ -7,7 +7,12 @@ const DATA_LOCALE = 'en'
 export default {
 
   getCountries () {
-    return fetch(COUNTRIES_API_URL)
+    return fetch(COUNTRIES_API_URL).then(res => {
+      if (!res.ok) {
+        throw new Error(`Could not fetch countries: error ${res.status} ${res.statusText}`);
+      }
+      return res;
+    });
   },
 
   buildRegionData (countries) {
