@@ -1,7 +1,8 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 
-const Footer = () => {
-  return <footer className="bg-secondary p-3">2018 - <strong>React Countries app</strong></footer>;
+const Footer = ({ t }) => {
+  return <footer className="bg-secondary p-3">{t('footer.info')}</footer>;
 };
 
-export default Footer;
+export default withNamespaces()(Footer);

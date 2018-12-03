@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
+import { withNamespaces } from 'react-i18next';
 
 import { 
   fetchCountries,
@@ -76,6 +77,7 @@ class Countries extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <Container fluid as="section">
         <Row>
@@ -90,7 +92,7 @@ class Countries extends React.Component {
               onNavigateToRegion={() => this.props.filterCountriesBySubregion('')}
             />   
             <CountryDisplayType onChange={e => this.props.setDisplayType(e.target.value)} />
-            {this.props.loading ? <span>Loading....</span> : this.renderCountries()}
+            {this.props.loading ? <span>{t('content.message.dataLoading')}</span> : this.renderCountries()}
             <CountryDetailsModal
               show={!!this.state.selectedCountryDetails}
               onHide={() => this.setState({ selectedCountryDetails: null })}
@@ -103,4 +105,4 @@ class Countries extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Countries);
+export default withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(Countries));

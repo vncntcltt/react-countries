@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import { withNamespaces } from 'react-i18next';
 
 import CountrySearch from './CountrySearch';
 import CountrySelectFilter from './CountrySelectFilter';
@@ -70,39 +71,40 @@ class CountrySidebar extends React.Component {
   }  
   
   render() {
+    const { t } = this.props;
     return (
       <>    
         <Form ref={this.formRef} className="py-3">
           <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
           <CountrySelectFilter 
-            label="Region" 
+            label={t('filters.label.region')}
             values={this.props.regions} 
             onFilterChange={region => this.props.filterCountriesByRegion(region)} 
             addAll 
           />
           <CountrySelectFilter 
-            label="Subregion" 
+            label={t('filters.label.subregion')}
             values={this.props.subregions} 
             onFilterChange={subregion => this.props.filterCountriesBySubregion(subregion)} 
             addAll 
           />
           <CountrySelectFilter 
-            label="Language" 
+            label={t('filters.label.languages')}
             values={this.props.languages} 
             onFilterChange={languages => this.props.filterCountriesByLanguages(languages)} 
             addAll 
           />
           <CountrySelectFilter 
-            label="Regional bloc" 
+            label={t('filters.label.regionalBloc')} 
             values={this.props.regionalBlocs} 
             onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
             addAll 
           />
-          <Button variant="primary" onClick={this.resetFilters}>Reset filters</Button>
+          <Button variant="primary" onClick={this.resetFilters}>{t('filters.button.reset')}</Button>
         </Form>        
       </>
     );   
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountrySidebar);
+export default withNamespaces()(connect(mapStateToProps, mapDispatchToProps)(CountrySidebar));

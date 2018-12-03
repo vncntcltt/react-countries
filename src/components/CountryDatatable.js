@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/lib/Table';
+import { withNamespaces } from 'react-i18next';
 
 import CountryDataRow from './CountryDataRow';
 import Pagination from './Pagination';
@@ -20,7 +21,7 @@ class CountryDatatable extends React.Component {
   }
 
   render() {
-    const { countries, onCountrySelected } = this.props;
+    const { t, countries, onCountrySelected } = this.props;
     const pageCount = Math.ceil(countries.length / ITEMS_PER_PAGE);
     const countryStart = (this.state.currentPage - 1) * ITEMS_PER_PAGE;
     const currentPageCountries = countries.slice(countryStart, countryStart + ITEMS_PER_PAGE);
@@ -29,13 +30,13 @@ class CountryDatatable extends React.Component {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Code</th>
-              <th>Capital</th>
-              <th>Region</th>
-              <th>Subregion</th>
-              <th>Population</th>
-              <th>Area</th>
+              <th>{t('country.label.name')}</th>
+              <th>{t('country.label.code')}</th>
+              <th>{t('country.label.capital')}</th>
+              <th>{t('country.label.region')}</th>
+              <th>{t('country.label.subregion')}</th>
+              <th>{t('country.label.population')}</th>
+              <th>{t('country.label.area')}</th>
             </tr>
           </thead>
           <tbody>
@@ -64,4 +65,4 @@ CountryDatatable.propTypes = {
   onCountrySelected: PropTypes.func.isRequired
 }
 
-export default CountryDatatable;
+export default withNamespaces()(CountryDatatable);

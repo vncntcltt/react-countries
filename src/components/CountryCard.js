@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/lib/Card';
 import ListGroup from 'react-bootstrap/lib/ListGroup'
+import { withNamespaces } from 'react-i18next';
 
 import UnitDisplay from './UnitDisplay';
 
-const CountryCard = ({ country }) => {
+const CountryCard = ({ t, country }) => {
   const { name, alpha3Code, region, subregion, capital, population, area } = country;
   return (
     <Card style={{ width: '18rem' }}>
@@ -13,9 +14,9 @@ const CountryCard = ({ country }) => {
         <Card.Title>{name} ({alpha3Code})</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{region} {subregion && '/ ' + subregion}</Card.Subtitle>
         <ListGroup variant="flush">
-          <ListGroup.Item>Capital: {capital}</ListGroup.Item>
-          <ListGroup.Item>Population: {population}</ListGroup.Item>
-          <ListGroup.Item>Area: <UnitDisplay value={area} /></ListGroup.Item>
+          <ListGroup.Item>{t('country.label.capital')}: {capital}</ListGroup.Item>
+          <ListGroup.Item>{t('country.label.population')}: {population}</ListGroup.Item>
+          <ListGroup.Item>{t('country.label.area')}: <UnitDisplay value={area} /></ListGroup.Item>
         </ListGroup>
       </Card.Body>
     </Card>
@@ -34,4 +35,4 @@ CountryCard.propTypes = {
   })
 };
 
-export default CountryCard;
+export default withNamespaces()(CountryCard);

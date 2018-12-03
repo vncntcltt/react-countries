@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/lib/Form';
+import { withNamespaces } from 'react-i18next';
 
 class CountrySelectFilter extends React.Component {
 
@@ -23,11 +24,12 @@ class CountrySelectFilter extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <Form.Group>
         <Form.Label>{this.props.label}</Form.Label>
         <Form.Control as="select" onChange={this.onFilterChange}>
-        {this.props.addAll ? <option value="">All</option> : ''}
+        {this.props.addAll ? <option value="">{t('filters.placeholder.all')}</option> : ''}
         {this.props.values.map(val => 
           <option key={val} value={val}>{val}</option>
         )}
@@ -38,4 +40,4 @@ class CountrySelectFilter extends React.Component {
 
 }
 
-export default CountrySelectFilter;
+export default withNamespaces()(CountrySelectFilter);

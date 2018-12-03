@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Breadcrumb from 'react-bootstrap/lib/Breadcrumb';
+import { withNamespaces } from 'react-i18next';
 
 class CountryBreadcrumb extends React.Component {
 
@@ -12,11 +13,11 @@ class CountryBreadcrumb extends React.Component {
   };
 
   render() {
-    const { region, subregion, onNavigateToWorld, onNavigateToRegion } = this.props;
+    const { t, region, subregion, onNavigateToWorld, onNavigateToRegion } = this.props;
     return (
       <Breadcrumb>
         <Breadcrumb.Item active={!region && !subregion} onClick={onNavigateToWorld}>
-          World
+          {t('navigation.label.world')}
         </Breadcrumb.Item>
         {region && <Breadcrumb.Item active={!subregion} onClick={onNavigateToRegion}>
           {region}
@@ -30,4 +31,4 @@ class CountryBreadcrumb extends React.Component {
 
 }
 
-export default CountryBreadcrumb;
+export default withNamespaces()(CountryBreadcrumb);
