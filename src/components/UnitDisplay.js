@@ -10,7 +10,9 @@ const mapStateToProps = state => ({
 const UnitDisplay = ({ value, selectedUnit }) => {
   let val = value;
   if (selectedUnit === SETTINGS_UNIT_TYPES.IMPERIAL) {
-    val = Math.round(val / 2,59);
+    val = Math.round(val / 2,59) + ' sq mi';
+  } else {
+    val = val + ' km²';
   }
   return val;
 };

@@ -23,7 +23,7 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <Form>        
+      <Form className="p-3">
         <Form.Group>
           <Form.Label>Units</Form.Label>
           <Form.Control as="select" onChange={this.onUnitChange} value={this.props.selectedUnit}>

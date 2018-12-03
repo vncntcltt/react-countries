@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Countries from './Countries';
 import Footer from './Footer';
@@ -8,8 +8,7 @@ import Settings from './Settings';
 import About from './About';
 
 const App = () => {
-  return (
-    <BrowserRouter>
+  return (    
       <>
         <Navbar />
 
@@ -24,7 +23,6 @@ const App = () => {
 
         <Footer />
       </>
-    </BrowserRouter>
   );
 }
 

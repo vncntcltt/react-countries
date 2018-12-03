@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 
 import { 
   SET_COUNTRIES_DISPLAY_TYPE, 
@@ -98,4 +99,9 @@ const settings = (state = initialSettingsState, action) => {
   }
 };
 
-export default combineReducers({ countries, sortAndFilters, settings });
+export default history => combineReducers({ 
+  router: connectRouter(history),
+  countries, 
+  sortAndFilters, 
+  settings 
+});
