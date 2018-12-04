@@ -23,22 +23,20 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
       return <CountryMap 
         countries={filteredCountries} 
         onCountrySelected={onCountrySelected}
-      />
+      />;
     default:
       console.error('Unknown display type', displayType);
   }
 }
 
-const CountryMainView = ({ filteredCountries, sortAndFilters, setDisplayType, filterCountriesByRegion, filterCountriesBySubregion, displayType, onCountrySelected }) => {
+const CountryMainView = ({ filteredCountries, sortAndFilters, displayType, onCountrySelected }) => {
   return (
     <>
-      <CountryBreadcrumb 
+      <CountryBreadcrumb
         region={sortAndFilters.filterRegion} 
         subregion={sortAndFilters.filterSubregion} 
-        onNavigateToWorld={() => filterCountriesByRegion('')}
-        onNavigateToRegion={() => filterCountriesBySubregion('')}
       />
-      <CountryDisplayType onChange={e => setDisplayType(e.target.value)} />
+      <CountryDisplayType />
       {renderCountries(filteredCountries, displayType, onCountrySelected)}
     </>
   );

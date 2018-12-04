@@ -6,13 +6,7 @@ import Col from 'react-bootstrap/lib/Col';
 import Alert from 'react-bootstrap/lib/Alert';
 import { NamespacesConsumer } from 'react-i18next';
 
-import { 
-  fetchCountries,
-  setCountryDisplayType,
-  setSelectedCountry,
-  filterCountriesByRegion,
-  filterCountriesBySubregion
-} from '../actions';
+import { fetchCountries, setSelectedCountry } from '../actions';
 import CountrySidebar from './CountrySidebar';
 import CountryMainView from './CountryMainView';
 import CountryDetailsModal from './CountryDetailsModal';
@@ -33,18 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchCountries: () => {
       dispatch(fetchCountries())
     },
-    setDisplayType: displayType => {
-      dispatch(setCountryDisplayType(displayType))
-    },
     setSelectedCountry: country => {
       dispatch(setSelectedCountry(country))
-    },
-    filterCountriesByRegion: region => {
-      dispatch(filterCountriesByRegion(region))
-    },
-    filterCountriesBySubregion: subregion => {
-      dispatch(filterCountriesBySubregion(subregion))
-    },    
+    }
   };
 };
 
@@ -62,9 +47,6 @@ class Countries extends React.Component {
       loading,
       error,
       sortAndFilters,
-      filterCountriesByRegion,
-      filterCountriesBySubregion,
-      setDisplayType,
       setSelectedCountry
     } = this.props;
     return (
@@ -85,9 +67,6 @@ class Countries extends React.Component {
                         filteredCountries={filteredCountries}
                         displayType={displayType}
                         sortAndFilters={sortAndFilters}
-                        filterCountriesByRegion={filterCountriesByRegion}
-                        filterCountriesBySubregion={filterCountriesBySubregion}
-                        setDisplayType={setDisplayType}
                         onCountrySelected={country => setSelectedCountry(country)}
                       />
                     </Col>
