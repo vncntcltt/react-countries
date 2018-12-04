@@ -28,7 +28,7 @@ const sortAndFilters = (state = initialSortAndFiltersState, action) => {
     case FILTER_COUNTRIES_BY_NAME:
       return { ...state, filterName: action.filterName };                        
     case RESET_FILTERS:
-      return {...state, ...initialSortAndFiltersState};
+      return { ...state, ...initialSortAndFiltersState };
     default:
       return state;
   }
