@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import UnitDisplay from './UnitDisplay';
+import UnitDisplay from './common/UnitDisplay';
 
 const CountryDataRow = ({ country, onCountrySelected }) => {
   const { name, alpha3Code, capital, region, subregion, population, area } = country;

@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/lib/ListGroup'
 import Media from 'react-bootstrap/lib/Media';
 import { withNamespaces } from 'react-i18next';
 
-import UnitDisplay from './UnitDisplay';
+import UnitDisplay from './common/UnitDisplay';
 
 const CountryCard = ({ t, country, cardMinWidth }) => {
   const { name, alpha3Code, region, subregion, capital, population, area, languages, currencies, regionalBlocs, flag } = country;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
-import { SETTINGS_UNIT_TYPES } from '../actions';
+import { SETTINGS_UNIT_TYPES } from '../../actions';
 
 const mapStateToProps = state => ({
   selectedUnit: state.settings.unit
