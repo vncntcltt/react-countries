@@ -75,28 +75,35 @@ class CountrySidebar extends React.Component {
     return (
       <>    
         <Form ref={this.formRef} className="py-3">
-          <CountrySearch onSearch={name => this.props.filterCountriesByName(name)} />
+          <CountrySearch
+            value={this.props.sortAndFilters.filterName}
+            onSearch={name => this.props.filterCountriesByName(name)} 
+          />
           <CountrySelectFilter 
             label={t('filters.label.region')}
-            values={this.props.regions} 
+            values={this.props.regions}
+            selectedValue={this.props.sortAndFilters.filterRegion}
             onFilterChange={region => this.props.filterCountriesByRegion(region)} 
             addAll 
           />
           <CountrySelectFilter 
             label={t('filters.label.subregion')}
-            values={this.props.subregions} 
+            values={this.props.subregions}
+            selectedValue={this.props.sortAndFilters.filterSubregion}
             onFilterChange={subregion => this.props.filterCountriesBySubregion(subregion)} 
             addAll 
           />
           <CountrySelectFilter 
             label={t('filters.label.languages')}
-            values={this.props.languages} 
+            values={this.props.languages}
+            selectedValue={this.props.sortAndFilters.filterLanguages}
             onFilterChange={languages => this.props.filterCountriesByLanguages(languages)} 
             addAll 
           />
           <CountrySelectFilter 
             label={t('filters.label.regionalBloc')} 
-            values={this.props.regionalBlocs} 
+            values={this.props.regionalBlocs}
+            selectedValue={this.props.sortAndFilters.filterRegionalBloc}
             onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
             addAll 
           />

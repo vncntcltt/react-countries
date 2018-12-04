@@ -8,17 +8,17 @@ import {
 } from '../actions';
 
 const initialSortAndFiltersState = {
-  filterRegion: null,
-  filterSubregion: null,
-  filterRegionalBloc: null,
-  filterLanguages: null,
-  filterName: null
+  filterRegion: '',
+  filterSubregion: '',
+  filterRegionalBloc: '',
+  filterLanguages: '',
+  filterName: ''
 }
 
 const sortAndFilters = (state = initialSortAndFiltersState, action) => {
   switch (action.type) {
     case FILTER_COUNTRIES_BY_REGION:
-      return { ...state, filterRegion: action.filterRegion };
+      return { ...state, filterRegion: action.filterRegion, filterSubregion: '' };
     case FILTER_COUNTRIES_BY_SUBREGION:
       return { ...state, filterSubregion: action.filterSubregion };
     case FILTER_COUNTRIES_BY_REGIONAL_BLOC:

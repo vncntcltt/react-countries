@@ -6,7 +6,8 @@ import { withNamespaces } from 'react-i18next';
 class CountrySelectFilter extends React.Component {
 
   static propTypes = {    
-    values: PropTypes.array.isRequired,    
+    values: PropTypes.array.isRequired,
+    selectedValue: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func.isRequired,
     label: PropTypes.string,
     addAll: PropTypes.bool
@@ -24,13 +25,13 @@ class CountrySelectFilter extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, values, selectedValue, label, addAll } = this.props;
     return (
       <Form.Group>
-        <Form.Label>{this.props.label}</Form.Label>
-        <Form.Control as="select" onChange={this.onFilterChange}>
-        {this.props.addAll ? <option value="">{t('filters.placeholder.all')}</option> : ''}
-        {this.props.values.map(val => 
+        <Form.Label>{label}</Form.Label>
+        <Form.Control as="select" value={selectedValue} onChange={this.onFilterChange}>
+        {addAll ? <option value="">{t('filters.placeholder.all')}</option> : ''}
+        {values.map(val => 
           <option key={val} value={val}>{val}</option>
         )}
         </Form.Control>
