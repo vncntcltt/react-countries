@@ -16,7 +16,7 @@ const CountryDataRow = ({ country, onCountrySelected }) => {
       <td><UnitDisplay value={area} /></td>
     </tr>
   );
-}
+};
 
 CountryDataRow.propTypes = {
   country: PropTypes.shape({

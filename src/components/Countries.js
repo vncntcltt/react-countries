@@ -13,6 +13,7 @@ import CountryDetailsModal from './CountryDetailsModal';
 
 const mapStateToProps = state => {
   return {
+    countries: state.countries.all,
     filteredCountries: state.countries.filtered,
     displayType: state.countries.displayType,
     selectedCountry: state.countries.selectedCountry,
@@ -40,7 +41,8 @@ class Countries extends React.Component {
   }
 
   render() {
-    const { 
+    const {
+      countries,
       filteredCountries,
       displayType,
       selectedCountry,
@@ -63,7 +65,8 @@ class Countries extends React.Component {
                       <CountrySidebar/>
                     </Col>
                     <Col>
-                      <CountryMainView 
+                      <CountryMainView
+                        countries={countries}
                         filteredCountries={filteredCountries}
                         displayType={displayType}
                         sortAndFilters={sortAndFilters}

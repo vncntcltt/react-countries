@@ -3,6 +3,7 @@ import React from 'react';
 import { COUNTRIES_DISPLAY_TYPES } from '../actions';
 
 import CountryDisplayType from './CountryDisplayType';
+import CountryStatistics from './CountryStatistics';
 import CountryGrid from './CountryGrid';
 import CountryDatatable from './CountryDatatable';
 import CountryMap from './CountryMap';
@@ -40,7 +41,7 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
   }
 }
 
-const CountryMainView = ({ filteredCountries, sortAndFilters, displayType, onCountrySelected }) => {
+const CountryMainView = ({ countries, filteredCountries, sortAndFilters, displayType, onCountrySelected }) => {
   return (
     <>
       <CountryBreadcrumb
@@ -48,6 +49,11 @@ const CountryMainView = ({ filteredCountries, sortAndFilters, displayType, onCou
         subregion={sortAndFilters.filterSubregion} 
       />
       <CountryDisplayType />
+      <CountryStatistics
+        countries={countries} 
+        filteredCountries={filteredCountries}
+        className="float-right pt-2"
+      />
       {renderCountries(filteredCountries, displayType, onCountrySelected)}
     </>
   );
