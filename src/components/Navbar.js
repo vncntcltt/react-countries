@@ -9,18 +9,21 @@ const MainNavbar = () => {
     <NamespacesConsumer>
       {
         t => (
-          <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+          <Navbar bg="dark" variant="dark" expand="md" sticky="top">
             <LinkContainer to="/countries">      
               <Navbar.Brand>{t('countries.title')}</Navbar.Brand>
-            </LinkContainer>
-            <Nav className="mr-auto">
-              <LinkContainer to="/settings">   
-                <Nav.Link>{t('settings.title')}</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/about">
-                <Nav.Link>{t('about.title')}</Nav.Link>
-              </LinkContainer>
-            </Nav>
+            </LinkContainer>          
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="mr-auto">
+                <LinkContainer to="/settings">   
+                  <Nav.Link>{t('settings.title')}</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/about">
+                  <Nav.Link>{t('about.title')}</Nav.Link>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
           </Navbar>
         )
     }

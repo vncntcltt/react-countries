@@ -43,7 +43,7 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
 
 const CountryMainView = ({ countries, filteredCountries, sortAndFilters, displayType, onCountrySelected }) => {
   return (
-    <>
+    <main>
       <CountryBreadcrumb
         region={sortAndFilters.filterRegion} 
         subregion={sortAndFilters.filterSubregion} 
@@ -51,11 +51,10 @@ const CountryMainView = ({ countries, filteredCountries, sortAndFilters, display
       <CountryDisplayType />
       <CountryStatistics
         countries={countries} 
-        filteredCountries={filteredCountries}
-        className="float-right pt-2"
+        filteredCountries={filteredCountries}        
       />
       {renderCountries(filteredCountries, displayType, onCountrySelected)}
-    </>
+    </main>
   );
 };
 

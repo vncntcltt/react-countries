@@ -17,10 +17,10 @@ const CountryStatistics = ({ countries, filteredCountries }) => {
     <NamespacesConsumer>
     {
       t => (
-        <span className="float-right pt-2">
+        <div className="float-lg-right py-2">
           <span>{countriesCount} {t('statistics.text.countries', { count: countriesCount })}</span>
           <span className="text-muted px-1"> ({countriesPct} {t('statistics.subtext.worldCountries')})</span>
-        </span>
+        </div>
       )
     }
     </NamespacesConsumer>
