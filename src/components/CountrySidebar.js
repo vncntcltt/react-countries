@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import { withNamespaces } from 'react-i18next';
 
 import CountrySearch from './CountrySearch';
-import CountrySelectFilter from './CountrySelectFilter';
+import SelectFilter from './common/SelectFilter';
 
 import {   
   filterAndSortCountries,
@@ -80,7 +80,7 @@ class CountrySidebar extends React.Component {
                   onSearch={name => this.props.filterCountriesByName(name)} 
                 />
 
-                <CountrySelectFilter 
+                <SelectFilter 
                   label={t('filters.label.region')}
                   values={this.props.regions}
                   selectedValue={this.props.sortAndFilters.filterRegion}
@@ -88,7 +88,7 @@ class CountrySidebar extends React.Component {
                   addAll 
                 />
 
-                <CountrySelectFilter 
+                <SelectFilter 
                   label={t('filters.label.subregion')}
                   values={this.props.subregions}
                   selectedValue={this.props.sortAndFilters.filterSubregion}
@@ -96,7 +96,7 @@ class CountrySidebar extends React.Component {
                   addAll 
                 />
 
-                <CountrySelectFilter 
+                <SelectFilter 
                   label={t('filters.label.languages')}
                   values={this.props.languages}
                   selectedValue={this.props.sortAndFilters.filterLanguages}
@@ -104,7 +104,7 @@ class CountrySidebar extends React.Component {
                   addAll 
                 />
 
-                <CountrySelectFilter 
+                <SelectFilter 
                   label={t('filters.label.regionalBloc')} 
                   values={this.props.regionalBlocs}
                   selectedValue={this.props.sortAndFilters.filterRegionalBloc}

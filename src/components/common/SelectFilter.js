@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/lib/Form';
 import { withNamespaces } from 'react-i18next';
 
-class CountrySelectFilter extends React.Component {
+class SelectFilter extends React.Component {
 
   static propTypes = {    
     values: PropTypes.array.isRequired,
@@ -19,9 +19,7 @@ class CountrySelectFilter extends React.Component {
   }
 
   onFilterChange = e => {
-    if (this.props.onFilterChange) {
-      this.props.onFilterChange(e.target.value);
-    }
+    this.props.onFilterChange(e.target.value);
   }
 
   render() {
@@ -41,4 +39,4 @@ class CountrySelectFilter extends React.Component {
 
 }
 
-export default withNamespaces()(CountrySelectFilter);
+export default withNamespaces()(SelectFilter);
