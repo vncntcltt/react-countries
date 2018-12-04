@@ -6,7 +6,9 @@
     
     import createRootReducer from "../reducers/index";
     
-    export const history = createBrowserHistory();
+    export const history = createBrowserHistory({
+      basename: process.env.PUBLIC_URL
+    });
     export const store = createStore(
       createRootReducer(history),
       composeWithDevTools(
