@@ -15,7 +15,7 @@ class CountryDetailsModal extends React.Component {
           t => (
             <Modal
               {...this.props}
-              size="lg"
+              size="md"
               aria-labelledby="contained-modal-title-vcenter"
               centered
             >

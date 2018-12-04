@@ -7,13 +7,14 @@ import { withNamespaces } from 'react-i18next';
 
 import UnitDisplay from './UnitDisplay';
 
-const CountryCard = ({ t, country }) => {
+const CountryCard = ({ t, country, cardMinWidth }) => {
   const { name, alpha3Code, region, subregion, capital, population, area, languages, currencies, regionalBlocs, flag } = country;
   const countryLanguages = languages.map(l => l.name).join(', ');
   const countryCurrencies = currencies.map(c => `${c.name} (${c.code})`).join(', ');
   const countryRegionalBlocs = regionalBlocs.map(rb => rb.name).join(', ');
+  const cardStyles = cardMinWidth ? { minWidth: cardMinWidth } : {};
   return (
-    <Card style={{ minWidth: 400 }}>
+    <Card style={cardStyles}>
       <Card.Header>
         <Media>
           <img
@@ -74,7 +75,6 @@ CountryCard.propTypes = {
     languages: PropTypes.array,
     currencies: PropTypes.array,
     regionalBlocs: PropTypes.array
-
   })
 };
 

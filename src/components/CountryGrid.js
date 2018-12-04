@@ -12,7 +12,7 @@ const CountryGrid = ({ countries }) => {
       <Row>
         {countries.map(country => 
           <Col key={country.alpha3Code} className="mb-4">
-            <CountryCard country={country} />
+            <CountryCard country={country} cardMinWidth={300} />
           </Col> 
         )}
       </Row>
