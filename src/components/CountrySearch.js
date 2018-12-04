@@ -8,6 +8,7 @@ const CountrySearch = ({ t, value, onSearch }) => {
     value={value}
     onChange={e => onSearch(e.target.value)} 
     placeholder={t('toolbar.label.search')}
+    className="mb-3"
   />;
 };
 

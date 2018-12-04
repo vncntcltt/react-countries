@@ -107,7 +107,12 @@ class CountrySidebar extends React.Component {
             onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)} 
             addAll 
           />
-          <Button variant="primary" onClick={this.resetFilters}>{t('filters.button.reset')}</Button>
+          <Button 
+            variant="primary" 
+            onClick={this.resetFilters}
+            className="my-2">
+            {t('filters.button.reset')}
+          </Button>
         </Form>        
       </>
     );   

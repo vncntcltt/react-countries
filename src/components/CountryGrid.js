@@ -11,7 +11,7 @@ const CountryGrid = ({ countries }) => {
     <Container fluid>
       <Row>
         {countries.map(country => 
-          <Col key={country.alpha3Code}>
+          <Col key={country.alpha3Code} className="mb-4">
             <CountryCard country={country} />
           </Col> 
         )}
