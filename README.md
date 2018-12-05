@@ -4,6 +4,9 @@ This is a personal project to learn React.
 
 You can see the project in action at https://vncntcltt.github.io/react-countries
 
+![ScreenShot](/screenshots/react-countries.gif)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
