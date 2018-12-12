@@ -20,7 +20,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "lint": "eslint src --fix",
+    "lint": "eslint src",
+    "lint:fix": "npm run lint -- --fix",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
