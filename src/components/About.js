@@ -11,11 +11,7 @@ const About = function({ t }) {
           <article className="p-2">
             <p>
               {t('about.app.part1')}
-              <a
-                href="https://github.com/vncntcltt/react-countries"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://github.com/vncntcltt/react-countries" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </p>
@@ -44,11 +40,7 @@ const About = function({ t }) {
         <Tab eventKey="data" title={t('about.tab.data')}>
           <article className="p-2">
             {t('about.data.countriesData')}
-            <a
-              href="https://restcountries.eu/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://restcountries.eu/" target="_blank" rel="noopener noreferrer">
               REST Countries
             </a>
           </article>

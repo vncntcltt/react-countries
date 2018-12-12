@@ -26,16 +26,8 @@ class SelectFilter extends React.Component {
     return (
       <Form.Group>
         <Form.Label>{label}</Form.Label>
-        <Form.Control
-          as="select"
-          value={selectedValue}
-          onChange={this.onFilterChange}
-        >
-          {addAll ? (
-            <option value="">{t('filters.placeholder.all')}</option>
-          ) : (
-            ''
-          )}
+        <Form.Control as="select" value={selectedValue} onChange={this.onFilterChange}>
+          {addAll ? <option value="">{t('filters.placeholder.all')}</option> : ''}
           {values.map(val => (
             <option key={val} value={val}>
               {val}

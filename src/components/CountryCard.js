@@ -22,9 +22,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
     flag
   } = country
   const countryLanguages = languages.map(l => l.name).join(', ')
-  const countryCurrencies = currencies
-    .map(c => `${c.name} (${c.code})`)
-    .join(', ')
+  const countryCurrencies = currencies.map(c => `${c.name} (${c.code})`).join(', ')
   const countryRegionalBlocs = regionalBlocs.map(rb => rb.name).join(', ')
   const cardStyles = cardMinWidth ? { minWidth: cardMinWidth } : {}
   return (
@@ -45,9 +43,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
       <Card.Body>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <span className="text-muted pr-2">
-              {t('country.label.capital')}
-            </span>
+            <span className="text-muted pr-2">{t('country.label.capital')}</span>
             {capital}
           </ListGroup.Item>
           <ListGroup.Item>
@@ -59,9 +55,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
             {countryRegionalBlocs}
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">
-              {t('country.label.population')}
-            </span>
+            <span className="text-muted pr-2">{t('country.label.population')}</span>
             {population}
           </ListGroup.Item>
           <ListGroup.Item>
@@ -69,15 +63,11 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
             <UnitDisplay value={area} />
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">
-              {t('country.label.languages', { count: languages.length })}
-            </span>
+            <span className="text-muted pr-2">{t('country.label.languages', { count: languages.length })}</span>
             {countryLanguages}
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">
-              {t('country.label.currencies', { count: currencies.length })}
-            </span>
+            <span className="text-muted pr-2">{t('country.label.currencies', { count: currencies.length })}</span>
             {countryCurrencies}
           </ListGroup.Item>
         </ListGroup>

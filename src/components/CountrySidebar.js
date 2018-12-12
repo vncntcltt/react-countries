@@ -58,10 +58,7 @@ const mapDispatchToProps = dispatch => {
 class CountrySidebar extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.sortAndFilters !== this.props.sortAndFilters) {
-      this.props.filterAndSortCountries(
-        this.props.countries,
-        this.props.sortAndFilters
-      )
+      this.props.filterAndSortCountries(this.props.countries, this.props.sortAndFilters)
     }
   }
 
@@ -85,9 +82,7 @@ class CountrySidebar extends React.Component {
                 label={t('filters.label.region')}
                 values={this.props.regions}
                 selectedValue={this.props.sortAndFilters.filterRegion}
-                onFilterChange={region =>
-                  this.props.filterCountriesByRegion(region)
-                }
+                onFilterChange={region => this.props.filterCountriesByRegion(region)}
                 addAll
               />
 
@@ -95,9 +90,7 @@ class CountrySidebar extends React.Component {
                 label={t('filters.label.subregion')}
                 values={this.props.subregions}
                 selectedValue={this.props.sortAndFilters.filterSubregion}
-                onFilterChange={subregion =>
-                  this.props.filterCountriesBySubregion(subregion)
-                }
+                onFilterChange={subregion => this.props.filterCountriesBySubregion(subregion)}
                 addAll
               />
 
@@ -105,9 +98,7 @@ class CountrySidebar extends React.Component {
                 label={t('filters.label.languages')}
                 values={this.props.languages}
                 selectedValue={this.props.sortAndFilters.filterLanguages}
-                onFilterChange={languages =>
-                  this.props.filterCountriesByLanguages(languages)
-                }
+                onFilterChange={languages => this.props.filterCountriesByLanguages(languages)}
                 addAll
               />
 
@@ -115,17 +106,11 @@ class CountrySidebar extends React.Component {
                 label={t('filters.label.regionalBloc')}
                 values={this.props.regionalBlocs}
                 selectedValue={this.props.sortAndFilters.filterRegionalBloc}
-                onFilterChange={regionalBloc =>
-                  this.props.filterCountriesByRegionalBloc(regionalBloc)
-                }
+                onFilterChange={regionalBloc => this.props.filterCountriesByRegionalBloc(regionalBloc)}
                 addAll
               />
 
-              <Button
-                variant="primary"
-                onClick={this.props.resetFilters}
-                className="my-2"
-              >
+              <Button variant="primary" onClick={this.props.resetFilters} className="my-2">
                 {t('filters.button.reset')}
               </Button>
             </Form>

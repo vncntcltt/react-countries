@@ -24,19 +24,10 @@ class CountryBreadcrumb extends React.Component {
   }
 
   render() {
-    const {
-      t,
-      region,
-      subregion,
-      onNavigateToWorld,
-      onNavigateToRegion
-    } = this.props
+    const { t, region, subregion, onNavigateToWorld, onNavigateToRegion } = this.props
     return (
       <Breadcrumb>
-        <Breadcrumb.Item
-          active={!region && !subregion}
-          onClick={onNavigateToWorld}
-        >
+        <Breadcrumb.Item active={!region && !subregion} onClick={onNavigateToWorld}>
           {t('navigation.label.world')}
         </Breadcrumb.Item>
         {region && (
@@ -44,9 +35,7 @@ class CountryBreadcrumb extends React.Component {
             {region}
           </Breadcrumb.Item>
         )}
-        {region && subregion && (
-          <Breadcrumb.Item active>{subregion}</Breadcrumb.Item>
-        )}
+        {region && subregion && <Breadcrumb.Item active>{subregion}</Breadcrumb.Item>}
       </Breadcrumb>
     )
   }

@@ -17,13 +17,7 @@ export const fetchCountriesRequest = () => ({
   type: FETCH_COUNTRIES_REQUEST
 })
 
-export const fetchCountriesSuccess = ({
-  countries,
-  regions,
-  subregions,
-  languages,
-  regionalBlocs
-}) => ({
+export const fetchCountriesSuccess = ({ countries, regions, subregions, languages, regionalBlocs }) => ({
   type: FETCH_COUNTRIES_SUCCESS,
   countries,
   regions,
@@ -54,10 +48,7 @@ export const fetchCountries = () => {
 }
 
 export const filterAndSortCountries = (countries, filterAndSorts) => {
-  const filteredCountries = countryApi.filterAndSortCountries(
-    countries,
-    filterAndSorts
-  )
+  const filteredCountries = countryApi.filterAndSortCountries(countries, filterAndSorts)
   return {
     type: FILTER_AND_SORT_COUNTRIES,
     filteredCountries

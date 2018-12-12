@@ -18,8 +18,7 @@ const CountryStatistics = ({ countries, filteredCountries }) => {
       {t => (
         <div className="float-lg-right py-2">
           <span>
-            {countriesCount}{' '}
-            {t('statistics.text.countries', { count: countriesCount })}
+            {countriesCount} {t('statistics.text.countries', { count: countriesCount })}
           </span>
           <span className="text-muted px-1">
             {' '}

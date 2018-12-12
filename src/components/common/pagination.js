@@ -32,40 +32,29 @@ export const withPagination = WrappedComponent => {
       const { items, itemsPropName, itemsPerPage } = this.props
       const pageCount = Math.ceil(items.length / itemsPerPage)
       const firstItemIndex = (this.state.currentPage - 1) * itemsPerPage
-      const currentPageItems = items.slice(
-        firstItemIndex,
-        firstItemIndex + itemsPerPage
-      )
+      const currentPageItems = items.slice(firstItemIndex, firstItemIndex + itemsPerPage)
       const pages = []
       for (let page = 1; page <= pageCount; page++) {
         pages.push(
-          <Pagination.Item
-            key={page}
-            active={this.state.currentPage === page}
-            onClick={() => this.onPageChange(page)}
-          >
+          <Pagination.Item key={page} active={this.state.currentPage === page} onClick={() => this.onPageChange(page)}>
             {page}
           </Pagination.Item>
         )
       }
       return (
         <>
-          <WrappedComponent
-            {...{ ...this.props, [itemsPropName]: currentPageItems }}
-          />
+          <WrappedComponent {...{ ...this.props, [itemsPropName]: currentPageItems }} />
           <Pagination>
             <Pagination.First onClick={() => this.onPageChange(1)} />
             <Pagination.Prev
               onClick={() => {
-                if (this.state.currentPage > 1)
-                  this.onPageChange(this.state.currentPage - 1)
+                if (this.state.currentPage > 1) this.onPageChange(this.state.currentPage - 1)
               }}
             />
             {pages}
             <Pagination.Next
               onClick={() => {
-                if (this.state.currentPage < pageCount)
-                  this.onPageChange(this.state.currentPage + 1)
+                if (this.state.currentPage < pageCount) this.onPageChange(this.state.currentPage + 1)
               }}
             />
             <Pagination.Last onClick={() => this.onPageChange(pageCount)} />

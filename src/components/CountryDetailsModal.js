@@ -11,20 +11,11 @@ class CountryDetailsModal extends React.Component {
     return (
       <NamespacesConsumer>
         {t => (
-          <Modal
-            {...this.props}
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
+          <Modal {...this.props} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                {t('dialog.title.details')}
-              </Modal.Title>
+              <Modal.Title id="contained-modal-title-vcenter">{t('dialog.title.details')}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              {country && <CountryCard country={country} />}
-            </Modal.Body>
+            <Modal.Body>{country && <CountryCard country={country} />}</Modal.Body>
             <Modal.Footer>
               <Button onClick={onHide}>{t('dialog.button.close')}</Button>
             </Modal.Footer>

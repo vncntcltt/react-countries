@@ -20,11 +20,7 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
   switch (displayType) {
     case COUNTRIES_DISPLAY_TYPES.GRID:
       return (
-        <PaginatedCountryGrid
-          items={filteredCountries}
-          itemsPropName="countries"
-          itemsPerPage={ITEMS_PER_GRID_PAGE}
-        />
+        <PaginatedCountryGrid items={filteredCountries} itemsPropName="countries" itemsPerPage={ITEMS_PER_GRID_PAGE} />
       )
     case COUNTRIES_DISPLAY_TYPES.TABLE:
       return (
@@ -36,35 +32,18 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
         />
       )
     case COUNTRIES_DISPLAY_TYPES.MAP:
-      return (
-        <CountryMap
-          countries={filteredCountries}
-          onCountrySelected={onCountrySelected}
-        />
-      )
+      return <CountryMap countries={filteredCountries} onCountrySelected={onCountrySelected} />
     default:
       console.error('Unknown display type', displayType)
   }
 }
 
-const CountryMainView = ({
-  countries,
-  filteredCountries,
-  sortAndFilters,
-  displayType,
-  onCountrySelected
-}) => {
+const CountryMainView = ({ countries, filteredCountries, sortAndFilters, displayType, onCountrySelected }) => {
   return (
     <main>
-      <CountryBreadcrumb
-        region={sortAndFilters.filterRegion}
-        subregion={sortAndFilters.filterSubregion}
-      />
+      <CountryBreadcrumb region={sortAndFilters.filterRegion} subregion={sortAndFilters.filterSubregion} />
       <CountryDisplayType />
-      <CountryStatistics
-        countries={countries}
-        filteredCountries={filteredCountries}
-      />
+      <CountryStatistics countries={countries} filteredCountries={filteredCountries} />
       {renderCountries(filteredCountries, displayType, onCountrySelected)}
     </main>
   )

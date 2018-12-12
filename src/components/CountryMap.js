@@ -21,8 +21,7 @@ class CountryMap extends React.Component {
   componentDidMount() {
     this.map = L.map('map').setView([0, 0], 2)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map)
     if (this.props.countries) {
       this.addCountriesLayer()
@@ -43,9 +42,7 @@ class CountryMap extends React.Component {
         return countryIds.includes(feature.id.toString())
       },
       onEachFeature: (feature, layer) => {
-        const featureCountry = this.props.countries.find(
-          country => country.alpha3Code === feature.id
-        )
+        const featureCountry = this.props.countries.find(country => country.alpha3Code === feature.id)
         layer.on('click', e => {
           if (featureCountry) {
             this.props.onCountrySelected(featureCountry)

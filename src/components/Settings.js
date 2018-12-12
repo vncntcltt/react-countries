@@ -33,28 +33,16 @@ class Settings extends React.Component {
       <Form className="p-3">
         <Form.Group>
           <Form.Label>{t('settings.label.language')}</Form.Label>
-          <Form.Control
-            as="select"
-            onChange={this.onLanguageChange}
-            value={i18next.language}
-          >
+          <Form.Control as="select" onChange={this.onLanguageChange} value={i18next.language}>
             <option value="en">English</option>
             <option value="fr">Français</option>
           </Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label>{t('settings.label.units')}</Form.Label>
-          <Form.Control
-            as="select"
-            onChange={this.onUnitChange}
-            value={this.props.selectedUnit}
-          >
-            <option value={SETTINGS_UNIT_TYPES.METRIC}>
-              {t('settings.units.metric')}
-            </option>
-            <option value={SETTINGS_UNIT_TYPES.IMPERIAL}>
-              {t('settings.units.imperial')}
-            </option>
+          <Form.Control as="select" onChange={this.onUnitChange} value={this.props.selectedUnit}>
+            <option value={SETTINGS_UNIT_TYPES.METRIC}>{t('settings.units.metric')}</option>
+            <option value={SETTINGS_UNIT_TYPES.IMPERIAL}>{t('settings.units.imperial')}</option>
           </Form.Control>
         </Form.Group>
       </Form>

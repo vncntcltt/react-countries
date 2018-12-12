@@ -8,9 +8,7 @@ export default {
   getCountries() {
     return fetch(COUNTRIES_API_URL).then(res => {
       if (!res.ok) {
-        throw new Error(
-          `Could not fetch countries: error ${res.status} ${res.statusText}`
-        )
+        throw new Error(`Could not fetch countries: error ${res.status} ${res.statusText}`)
       }
       return res
     })
@@ -47,9 +45,7 @@ export default {
         }
       })
       regionalBlocs = Object.keys(regionalBlocBySize)
-      regionalBlocs.sort(
-        (rb1, rb2) => regionalBlocBySize[rb2] - regionalBlocBySize[rb1]
-      )
+      regionalBlocs.sort((rb1, rb2) => regionalBlocBySize[rb2] - regionalBlocBySize[rb1])
       country.languages.forEach(l => {
         let languageName = l.name
         if (!languageBySize[languageName]) {
@@ -72,32 +68,22 @@ export default {
 
   filterAndSortCountries(countries, sortAndFilters) {
     const filteredCountries = countries.filter(country => {
-      if (
-        sortAndFilters.filterRegion &&
-        country.region !== sortAndFilters.filterRegion
-      ) {
+      if (sortAndFilters.filterRegion && country.region !== sortAndFilters.filterRegion) {
         return false
       }
-      if (
-        sortAndFilters.filterSubregion &&
-        country.subregion !== sortAndFilters.filterSubregion
-      ) {
+      if (sortAndFilters.filterSubregion && country.subregion !== sortAndFilters.filterSubregion) {
         return false
       }
       if (
         sortAndFilters.filterRegionalBloc &&
-        !country.regionalBlocs.find(
-          rb => rb.name === sortAndFilters.filterRegionalBloc
-        )
+        !country.regionalBlocs.find(rb => rb.name === sortAndFilters.filterRegionalBloc)
       ) {
         return false
       }
       if (
         sortAndFilters.filterLanguages &&
         sortAndFilters.filterLanguages.length &&
-        !country.languages.find(l =>
-          sortAndFilters.filterLanguages.includes(l.name)
-        )
+        !country.languages.find(l => sortAndFilters.filterLanguages.includes(l.name))
       ) {
         return false
       }
@@ -125,10 +111,7 @@ export default {
       filteredCountries.sort((a, b) => {
         let res = 1
         if (DATA_STR_FIELDS.includes(sortAndFilters.sortField)) {
-          res = a[sortAndFilters.sortField].localeCompare(
-            b[sortAndFilters.sortField],
-            DATA_LOCALE
-          )
+          res = a[sortAndFilters.sortField].localeCompare(b[sortAndFilters.sortField], DATA_LOCALE)
         } else if (DATA_NUM_FIELDS.includes(sortAndFilters.sortField)) {
           res = a[sortAndFilters.sortField] - b[sortAndFilters.sortField]
         }
