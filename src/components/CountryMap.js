@@ -1,37 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import L from 'leaflet'
-import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css'
 
 import countriesGeoJson from '../assets/countries.geo.json'
 
 class CountryMap extends React.Component {
-
   static propTypes = {
     countries: PropTypes.array,
     onCountrySelected: PropTypes.func.isRequired
   }
 
   constructor(props) {
-    super(props);
-    this.map = null;
-    this.countriesLayer = null;
-    this.countriesGeoJson = countriesGeoJson;
+    super(props)
+    this.map = null
+    this.countriesLayer = null
+    this.countriesGeoJson = countriesGeoJson
   }
 
   componentDidMount() {
-    this.map = L.map('map').setView([0, 0], 2);
+    this.map = L.map('map').setView([0, 0], 2)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
+    }).addTo(this.map)
     if (this.props.countries) {
-      this.addCountriesLayer();
+      this.addCountriesLayer()
     }
   }
 
   componentDidUpdate() {
-    this.addCountriesLayer();
+    this.addCountriesLayer()
   }
 
   addCountriesLayer() {
@@ -39,17 +38,17 @@ class CountryMap extends React.Component {
       this.countriesLayer.remove()
     }
     this.countriesLayer = L.geoJSON(this.countriesGeoJson, {
-      filter: (feature) => {
+      filter: feature => {
         const countryIds = this.props.countries.map(c => c.alpha3Code)
         return countryIds.includes(feature.id.toString())
       },
       onEachFeature: (feature, layer) => {
         const featureCountry = this.props.countries.find(
           country => country.alpha3Code === feature.id
-        );
+        )
         layer.on('click', e => {
           if (featureCountry) {
-            this.props.onCountrySelected(featureCountry);
+            this.props.onCountrySelected(featureCountry)
           }
         })
         layer.bindTooltip('<strong>' + featureCountry.name + '</strong>')
@@ -65,10 +64,9 @@ class CountryMap extends React.Component {
   }
 
   render() {
-    const mapStyle = { width: "100%", minWidth: 380, minHeight: 760 };
-    return <div id="map" style={mapStyle} />;
+    const mapStyle = { width: '100%', minWidth: 380, minHeight: 760 }
+    return <div id="map" style={mapStyle} />
   }
-
 }
 
-export default CountryMap;
+export default CountryMap

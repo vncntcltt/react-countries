@@ -5,17 +5,18 @@ const DATA_NUM_FIELDS = ['population', 'area']
 const DATA_LOCALE = 'en'
 
 export default {
-
-  getCountries () {
+  getCountries() {
     return fetch(COUNTRIES_API_URL).then(res => {
       if (!res.ok) {
-        throw new Error(`Could not fetch countries: error ${res.status} ${res.statusText}`);
+        throw new Error(
+          `Could not fetch countries: error ${res.status} ${res.statusText}`
+        )
       }
-      return res;
-    });
+      return res
+    })
   },
 
-  buildRegionData (countries) {
+  buildRegionData(countries) {
     const regions = []
     const subregions = []
     const subregionsByRegion = {}
@@ -69,7 +70,7 @@ export default {
     }
   },
 
-  filterAndSortCountries (countries, sortAndFilters) {
+  filterAndSortCountries(countries, sortAndFilters) {
     const filteredCountries = countries.filter(country => {
       if (
         sortAndFilters.filterRegion &&

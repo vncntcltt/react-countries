@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/lib/Form';
-import { withNamespaces } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Form from 'react-bootstrap/lib/Form'
+import { withNamespaces } from 'react-i18next'
 
 class SelectFilter extends React.Component {
-
-  static propTypes = {    
+  static propTypes = {
     values: PropTypes.array.isRequired,
     selectedValue: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func.isRequired,
@@ -19,24 +18,33 @@ class SelectFilter extends React.Component {
   }
 
   onFilterChange = e => {
-    this.props.onFilterChange(e.target.value);
+    this.props.onFilterChange(e.target.value)
   }
 
   render() {
-    const { t, values, selectedValue, label, addAll } = this.props;
+    const { t, values, selectedValue, label, addAll } = this.props
     return (
       <Form.Group>
         <Form.Label>{label}</Form.Label>
-        <Form.Control as="select" value={selectedValue} onChange={this.onFilterChange}>
-        {addAll ? <option value="">{t('filters.placeholder.all')}</option> : ''}
-        {values.map(val => 
-          <option key={val} value={val}>{val}</option>
-        )}
+        <Form.Control
+          as="select"
+          value={selectedValue}
+          onChange={this.onFilterChange}
+        >
+          {addAll ? (
+            <option value="">{t('filters.placeholder.all')}</option>
+          ) : (
+            ''
+          )}
+          {values.map(val => (
+            <option key={val} value={val}>
+              {val}
+            </option>
+          ))}
         </Form.Control>
       </Form.Group>
-    );
+    )
   }
-
 }
 
-export default withNamespaces()(SelectFilter);
+export default withNamespaces()(SelectFilter)

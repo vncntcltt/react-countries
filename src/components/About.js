@@ -1,7 +1,7 @@
-import React from 'react';
-import Tabs from 'react-bootstrap/lib/Tabs';
-import Tab from 'react-bootstrap/lib/Tab';
-import { withNamespaces } from 'react-i18next';
+import React from 'react'
+import Tabs from 'react-bootstrap/lib/Tabs'
+import Tab from 'react-bootstrap/lib/Tab'
+import { withNamespaces } from 'react-i18next'
 
 const About = function({ t }) {
   return (
@@ -14,7 +14,8 @@ const About = function({ t }) {
               <a
                 href="https://github.com/vncntcltt/react-countries"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </p>
@@ -25,11 +26,12 @@ const About = function({ t }) {
         <Tab eventKey="tech" title={t('about.tab.tech')}>
           <article className="p-2">
             <ul>
-              <li>React
+              <li>
+                React
                 <ul>
                   <li>create-react-app</li>
                   <li>react-router</li>
-                  <li>react-redux</li>                  
+                  <li>react-redux</li>
                   <li>react-bootstrap</li>
                   <li>react-i18next</li>
                 </ul>
@@ -45,14 +47,15 @@ const About = function({ t }) {
             <a
               href="https://restcountries.eu/"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               REST Countries
             </a>
           </article>
         </Tab>
-      </Tabs>      
+      </Tabs>
     </section>
-  );
-};
+  )
+}
 
-export default withNamespaces()(About);
+export default withNamespaces()(About)

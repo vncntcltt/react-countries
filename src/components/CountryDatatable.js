@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Table from 'react-bootstrap/lib/Table';
-import { withNamespaces } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Table from 'react-bootstrap/lib/Table'
+import { withNamespaces } from 'react-i18next'
 
-import CountryDataRow from './CountryDataRow';
+import CountryDataRow from './CountryDataRow'
 
 class CountryDatatable extends React.Component {
-
   render() {
-    const { t, countries, onCountrySelected } = this.props;
+    const { t, countries, onCountrySelected } = this.props
     return (
       <>
         <Table striped bordered hover responsive>
@@ -24,19 +23,18 @@ class CountryDatatable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {countries.map(country =>
-              <CountryDataRow 
-                key={country.alpha3Code} 
-                country={country} 
+            {countries.map(country => (
+              <CountryDataRow
+                key={country.alpha3Code}
+                country={country}
                 onCountrySelected={country => onCountrySelected(country)}
               />
-            )}
+            ))}
           </tbody>
         </Table>
       </>
-    );
+    )
   }
-
 }
 
 CountryDatatable.propTypes = {
@@ -44,4 +42,4 @@ CountryDatatable.propTypes = {
   onCountrySelected: PropTypes.func.isRequired
 }
 
-export default withNamespaces()(CountryDatatable);
+export default withNamespaces()(CountryDatatable)

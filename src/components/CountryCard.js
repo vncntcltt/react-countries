@@ -1,30 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/lib/Card';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Card from 'react-bootstrap/lib/Card'
 import ListGroup from 'react-bootstrap/lib/ListGroup'
-import Media from 'react-bootstrap/lib/Media';
-import { withNamespaces } from 'react-i18next';
+import Media from 'react-bootstrap/lib/Media'
+import { withNamespaces } from 'react-i18next'
 
-import UnitDisplay from './common/UnitDisplay';
+import UnitDisplay from './common/UnitDisplay'
 
 const CountryCard = ({ t, country, cardMinWidth }) => {
-  const { name, alpha3Code, region, subregion, capital, population, area, languages, currencies, regionalBlocs, flag } = country;
-  const countryLanguages = languages.map(l => l.name).join(', ');
-  const countryCurrencies = currencies.map(c => `${c.name} (${c.code})`).join(', ');
-  const countryRegionalBlocs = regionalBlocs.map(rb => rb.name).join(', ');
-  const cardStyles = cardMinWidth ? { minWidth: cardMinWidth } : {};
+  const {
+    name,
+    alpha3Code,
+    region,
+    subregion,
+    capital,
+    population,
+    area,
+    languages,
+    currencies,
+    regionalBlocs,
+    flag
+  } = country
+  const countryLanguages = languages.map(l => l.name).join(', ')
+  const countryCurrencies = currencies
+    .map(c => `${c.name} (${c.code})`)
+    .join(', ')
+  const countryRegionalBlocs = regionalBlocs.map(rb => rb.name).join(', ')
+  const cardStyles = cardMinWidth ? { minWidth: cardMinWidth } : {}
   return (
     <Card style={cardStyles}>
       <Card.Header>
         <Media>
-          <img
-            height={64}
-            className="mr-3"
-            src={flag}
-            alt="Country flag"
-          />
+          <img height={64} className="mr-3" src={flag} alt="Country flag" />
           <Media.Body>
-            <Card.Title>{name} ({alpha3Code})</Card.Title>
+            <Card.Title>
+              {name} ({alpha3Code})
+            </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               {region} {subregion && '/ ' + subregion}
             </Card.Subtitle>
@@ -34,15 +45,23 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
       <Card.Body>
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <span className="text-muted pr-2">{t('country.label.capital')}</span>
+            <span className="text-muted pr-2">
+              {t('country.label.capital')}
+            </span>
             {capital}
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">{t('country.label.regionalBlocs', { count: regionalBlocs.length })}</span>
+            <span className="text-muted pr-2">
+              {t('country.label.regionalBlocs', {
+                count: regionalBlocs.length
+              })}
+            </span>
             {countryRegionalBlocs}
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">{t('country.label.population')}</span>
+            <span className="text-muted pr-2">
+              {t('country.label.population')}
+            </span>
             {population}
           </ListGroup.Item>
           <ListGroup.Item>
@@ -50,18 +69,22 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
             <UnitDisplay value={area} />
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">{t('country.label.languages', { count: languages.length })}</span>
+            <span className="text-muted pr-2">
+              {t('country.label.languages', { count: languages.length })}
+            </span>
             {countryLanguages}
           </ListGroup.Item>
           <ListGroup.Item>
-            <span className="text-muted pr-2">{t('country.label.currencies', { count: currencies.length })}</span>
+            <span className="text-muted pr-2">
+              {t('country.label.currencies', { count: currencies.length })}
+            </span>
             {countryCurrencies}
           </ListGroup.Item>
         </ListGroup>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
 CountryCard.propTypes = {
   country: PropTypes.shape({
@@ -76,6 +99,6 @@ CountryCard.propTypes = {
     currencies: PropTypes.array,
     regionalBlocs: PropTypes.array
   })
-};
+}
 
-export default withNamespaces()(CountryCard);
+export default withNamespaces()(CountryCard)

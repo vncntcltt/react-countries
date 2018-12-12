@@ -1,24 +1,24 @@
-import PropTypes from 'prop-types';
-import { connect } from "react-redux";
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { SETTINGS_UNIT_TYPES } from '../../actions';
+import { SETTINGS_UNIT_TYPES } from '../../actions'
 
 const mapStateToProps = state => ({
   selectedUnit: state.settings.unit
-});
+})
 
 const UnitDisplay = ({ value, selectedUnit }) => {
-  let val = value;
+  let val = value
   if (selectedUnit === SETTINGS_UNIT_TYPES.IMPERIAL) {
-    val = Math.round(val / 2,59) + ' sq mi';
+    val = Math.round(val / 2, 59) + ' sq mi'
   } else {
-    val = val + ' km²';
+    val = val + ' km²'
   }
-  return val;
-};
+  return val
+}
 
 UnitDisplay.propTypes = {
   value: PropTypes.number
-};
+}
 
-export default connect(mapStateToProps)(UnitDisplay);
+export default connect(mapStateToProps)(UnitDisplay)
