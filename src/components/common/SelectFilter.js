@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next'
 
 class SelectFilter extends React.Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     values: PropTypes.array.isRequired,
     selectedValue: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func.isRequired,

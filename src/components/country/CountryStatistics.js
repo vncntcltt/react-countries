@@ -1,5 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { NamespacesConsumer } from 'react-i18next'
+
+import { countryPropType } from '../common/propTypes'
 
 const displayPct = function(val) {
   if (Number.isInteger(val)) {
@@ -28,6 +31,11 @@ const CountryStatistics = ({ countries, filteredCountries }) => {
       )}
     </NamespacesConsumer>
   )
+}
+
+CountryStatistics.propTypes = {
+  countries: PropTypes.arrayOf(countryPropType).isRequired,
+  filteredCountries: PropTypes.arrayOf(countryPropType).isRequired
 }
 
 export default CountryStatistics

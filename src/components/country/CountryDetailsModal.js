@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/lib/Button'
 import { withNamespaces } from 'react-i18next'
 
 import CountryCard from './CountryCard'
+import { countryPropType } from '../common/propTypes'
 
 const CountryDetailsModal = ({ t, country, onHide, ...restProps }) => (
   <Modal {...restProps} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -19,7 +20,8 @@ const CountryDetailsModal = ({ t, country, onHide, ...restProps }) => (
 )
 
 CountryDetailsModal.propTypes = {
-  country: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  country: countryPropType.isRequired,
   onHide: PropTypes.func.isRequired
 }
 

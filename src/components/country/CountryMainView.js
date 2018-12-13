@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { COUNTRIES_DISPLAY_TYPES } from '../../actions'
 import CountryDisplayTypeContainer from './CountryDisplayTypeContainer'
@@ -8,6 +9,7 @@ import CountryDatatable from './CountryDatatable'
 import CountryMap from './CountryMap'
 import CountryBreadcrumbContainer from './CountryBreadcrumbContainer'
 import { withPagination } from '../common/pagination'
+import { countryPropType, sortAndFilterPropType } from '../common/propTypes'
 
 const PaginatedCountryTable = withPagination(CountryDatatable)
 const PaginatedCountryGrid = withPagination(CountryGrid)
@@ -45,5 +47,13 @@ const CountryMainView = ({ countries, filteredCountries, sortAndFilters, display
     {renderCountries(filteredCountries, displayType, onCountrySelected)}
   </main>
 )
+
+CountryMainView.propTypes = {
+  countries: PropTypes.arrayOf(countryPropType).isRequired,
+  filteredCountries: PropTypes.arrayOf(countryPropType).isRequired,
+  sortAndFilters: sortAndFilterPropType.isRequired,
+  displayType: PropTypes.string.isRequired,
+  onCountrySelected: PropTypes.func.isRequired
+}
 
 export default CountryMainView

@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
 
 import CountryCard from './CountryCard'
+import { countryPropType } from '../common/propTypes'
 
 const CountryGrid = ({ countries }) => (
   <Container fluid>
@@ -19,7 +20,7 @@ const CountryGrid = ({ countries }) => (
 )
 
 CountryGrid.propTypes = {
-  countries: PropTypes.array.isRequired
+  countries: PropTypes.arrayOf(countryPropType).isRequired
 }
 
 export default CountryGrid

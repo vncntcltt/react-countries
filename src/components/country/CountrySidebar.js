@@ -10,6 +10,7 @@ import SelectFilter from '../common/SelectFilter'
 
 class CountrySidebar extends React.Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     countries: PropTypes.array.isRequired,
     regions: PropTypes.arrayOf(PropTypes.string).isRequired,
     subregions: PropTypes.arrayOf(PropTypes.string).isRequired,

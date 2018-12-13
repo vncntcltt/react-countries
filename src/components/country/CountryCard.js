@@ -6,6 +6,7 @@ import Media from 'react-bootstrap/lib/Media'
 import { withNamespaces } from 'react-i18next'
 
 import UnitDisplayContainer from '../common/UnitDisplayContainer'
+import { countryPropType } from '../common/propTypes'
 
 const CountryCard = ({ t, country, cardMinWidth }) => {
   const {
@@ -77,18 +78,9 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
 }
 
 CountryCard.propTypes = {
-  country: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    alpha3Code: PropTypes.string.isRequired,
-    capital: PropTypes.string,
-    region: PropTypes.string,
-    subregion: PropTypes.string,
-    population: PropTypes.number,
-    area: PropTypes.number,
-    languages: PropTypes.array,
-    currencies: PropTypes.array,
-    regionalBlocs: PropTypes.array
-  })
+  t: PropTypes.func.isRequired,
+  country: countryPropType.isRequired,
+  cardMinWidth: PropTypes.number
 }
 
 export default withNamespaces()(CountryCard)

@@ -38,6 +38,7 @@ class CountryDatatable extends React.Component {
 }
 
 CountryDatatable.propTypes = {
+  t: PropTypes.func.isRequired,
   countries: PropTypes.array.isRequired,
   onCountrySelected: PropTypes.func.isRequired
 }

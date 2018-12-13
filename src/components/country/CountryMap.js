@@ -4,10 +4,11 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import countriesGeoJson from '../../assets/countries.geo.json'
+import { countryPropType } from '../common/propTypes'
 
 class CountryMap extends React.Component {
   static propTypes = {
-    countries: PropTypes.array,
+    countries: PropTypes.arrayOf(countryPropType),
     onCountrySelected: PropTypes.func.isRequired
   }
 

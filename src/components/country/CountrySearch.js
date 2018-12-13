@@ -13,6 +13,7 @@ const CountrySearch = ({ t, value, onSearch }) => (
 )
 
 CountrySearch.propTypes = {
+  t: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired
 }

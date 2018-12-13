@@ -33,6 +33,7 @@ const CountryDisplayType = ({ t, displayType, setDisplayType }) => (
 )
 
 CountryDisplayType.propTypes = {
+  t: PropTypes.func.isRequired,
   displayType: PropTypes.string.isRequired,
   setDisplayType: PropTypes.func.isRequired
 }

@@ -5,6 +5,7 @@ import { withNamespaces } from 'react-i18next'
 
 class CountryBreadcrumb extends React.Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     region: PropTypes.string,
     subregion: PropTypes.string,
     onNavigateToWorld: PropTypes.func,

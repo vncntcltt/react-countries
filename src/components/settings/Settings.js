@@ -8,6 +8,7 @@ import { SETTINGS_UNIT_TYPES } from '../../actions'
 
 class Settings extends React.Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     selectedUnit: PropTypes.string.isRequired,
     setSelectedUnit: PropTypes.func.isRequired
   }

@@ -9,15 +9,16 @@ import { NamespacesConsumer } from 'react-i18next'
 import CountrySidebarContainer from './CountrySidebarContainer'
 import CountryMainView from './CountryMainView'
 import CountryDetailsModal from './CountryDetailsModal'
+import { countryPropType, sortAndFilterPropType } from '../common/propTypes'
 
 class Countries extends React.Component {
   static propTypes = {
-    countries: PropTypes.array.isRequired,
-    filteredCountries: PropTypes.array.isRequired,
+    countries: PropTypes.arrayOf(countryPropType),
+    filteredCountries: PropTypes.arrayOf(countryPropType),
     fetchCountries: PropTypes.func.isRequired,
     displayType: PropTypes.string.isRequired,
-    sortAndFilters: PropTypes.object.isRequired,
-    selectedCountry: PropTypes.object.selectedCountry,
+    sortAndFilters: sortAndFilterPropType,
+    selectedCountry: countryPropType,
     loading: PropTypes.loading,
     error: PropTypes.error,
     setSelectedCountry: PropTypes.func
