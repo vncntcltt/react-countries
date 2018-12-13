@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 
-import Countries from './Countries'
+import Countries from './country/Countries'
+import Settings from './settings/Settings'
+import About from './about/About'
 import Footer from './Footer'
 import Navbar from './Navbar'
-import Settings from './Settings'
-import About from './About'
 
 const App = () => {
   return (

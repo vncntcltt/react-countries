@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/lib/Form'
 import { withNamespaces } from 'react-i18next'
 import i18next from 'i18next'
 
-import { setSettingsUnit, SETTINGS_UNIT_TYPES } from '../actions'
+import { setSettingsUnit, SETTINGS_UNIT_TYPES } from '../../actions'
 
 const mapStateToProps = state => ({
   selectedUnit: state.settings.unit

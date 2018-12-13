@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/lib/Navbar'
 import { withNamespaces } from 'react-i18next'
 
 import CountrySearch from './CountrySearch'
-import SelectFilter from './common/SelectFilter'
+import SelectFilter from '../common/SelectFilter'
 
 import {
   filterAndSortCountries,
@@ -16,7 +16,7 @@ import {
   filterCountriesByLanguages,
   filterCountriesByName,
   resetFilters
-} from '../actions'
+} from '../../actions'
 
 const mapStateToProps = state => {
   return {

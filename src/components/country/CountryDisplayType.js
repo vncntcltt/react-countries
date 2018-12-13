@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/lib/Button'
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
 import { withNamespaces } from 'react-i18next'
 
-import { COUNTRIES_DISPLAY_TYPES, setCountryDisplayType } from '../actions'
+import { COUNTRIES_DISPLAY_TYPES, setCountryDisplayType } from '../../actions'
 
 const mapStateToProps = state => {
   return {

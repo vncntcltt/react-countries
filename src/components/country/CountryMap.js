@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
-import countriesGeoJson from '../assets/countries.geo.json'
+import countriesGeoJson from '../../assets/countries.geo.json'
 
 class CountryMap extends React.Component {
   static propTypes = {

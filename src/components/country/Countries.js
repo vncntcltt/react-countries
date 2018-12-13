@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/lib/Col'
 import Alert from 'react-bootstrap/lib/Alert'
 import { NamespacesConsumer } from 'react-i18next'
 
-import { fetchCountries, setSelectedCountry } from '../actions'
+import { fetchCountries, setSelectedCountry } from '../../actions'
 import CountrySidebar from './CountrySidebar'
 import CountryMainView from './CountryMainView'
 import CountryDetailsModal from './CountryDetailsModal'
