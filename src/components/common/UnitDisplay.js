@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
 import { SETTINGS_UNIT_TYPES } from '../../actions'
-
-const mapStateToProps = state => ({
-  selectedUnit: state.settings.unit
-})
 
 const UnitDisplay = ({ value, selectedUnit }) => {
   let val = value
@@ -18,7 +13,8 @@ const UnitDisplay = ({ value, selectedUnit }) => {
 }
 
 UnitDisplay.propTypes = {
-  value: PropTypes.number
+  value: PropTypes.number.isRequired,
+  selectedUnit: PropTypes.string.isRequired
 }
 
-export default connect(mapStateToProps)(UnitDisplay)
+export default UnitDisplay

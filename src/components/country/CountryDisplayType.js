@@ -1,24 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/lib/Button'
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
 import { withNamespaces } from 'react-i18next'
 
-import { COUNTRIES_DISPLAY_TYPES, setCountryDisplayType } from '../../actions'
-
-const mapStateToProps = state => {
-  return {
-    displayType: state.countries.displayType
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setDisplayType: e => {
-      dispatch(setCountryDisplayType(e.target.value))
-    }
-  }
-}
+import { COUNTRIES_DISPLAY_TYPES } from '../../actions'
 
 const CountryDisplayType = ({ t, displayType, setDisplayType }) => {
   return (
@@ -48,9 +34,9 @@ const CountryDisplayType = ({ t, displayType, setDisplayType }) => {
   )
 }
 
-export default withNamespaces()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(CountryDisplayType)
-)
+CountryDisplayType.propTypes = {
+  displayType: PropTypes.string.isRequired,
+  setDisplayType: PropTypes.func.isRequired
+}
+
+export default withNamespaces()(CountryDisplayType)

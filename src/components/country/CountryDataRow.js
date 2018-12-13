@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import UnitDisplay from '../common/UnitDisplay'
+import UnitDisplayContainer from '../common/UnitDisplayContainer'
 
 const CountryDataRow = ({ country, onCountrySelected }) => {
   const { name, alpha3Code, capital, region, subregion, population, area } = country
@@ -14,7 +14,7 @@ const CountryDataRow = ({ country, onCountrySelected }) => {
       <td>{subregion}</td>
       <td>{population}</td>
       <td>
-        <UnitDisplay value={area} />
+        <UnitDisplayContainer value={area} />
       </td>
     </tr>
   )

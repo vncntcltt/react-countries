@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Form from 'react-bootstrap/lib/Form'
 import Button from 'react-bootstrap/lib/Button'
 import Navbar from 'react-bootstrap/lib/Navbar'
@@ -8,54 +8,23 @@ import { withNamespaces } from 'react-i18next'
 import CountrySearch from './CountrySearch'
 import SelectFilter from '../common/SelectFilter'
 
-import {
-  filterAndSortCountries,
-  filterCountriesByRegion,
-  filterCountriesBySubregion,
-  filterCountriesByRegionalBloc,
-  filterCountriesByLanguages,
-  filterCountriesByName,
-  resetFilters
-} from '../../actions'
-
-const mapStateToProps = state => {
-  return {
-    countries: state.countries.all,
-    regions: state.countries.regions,
-    subregions: state.countries.subregions,
-    languages: state.countries.languages,
-    regionalBlocs: state.countries.regionalBlocs,
-    sortAndFilters: state.sortAndFilters
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    filterAndSortCountries: (countries, sortAndFilters) => {
-      dispatch(filterAndSortCountries(countries, sortAndFilters))
-    },
-    filterCountriesByRegion: region => {
-      dispatch(filterCountriesByRegion(region))
-    },
-    filterCountriesBySubregion: subregion => {
-      dispatch(filterCountriesBySubregion(subregion))
-    },
-    filterCountriesByRegionalBloc: regionalBloc => {
-      dispatch(filterCountriesByRegionalBloc(regionalBloc))
-    },
-    filterCountriesByLanguages: languages => {
-      dispatch(filterCountriesByLanguages(languages))
-    },
-    filterCountriesByName: name => {
-      dispatch(filterCountriesByName(name))
-    },
-    resetFilters: () => {
-      dispatch(resetFilters())
-    }
-  }
-}
-
 class CountrySidebar extends React.Component {
+  static propTypes = {
+    countries: PropTypes.array.isRequired,
+    regions: PropTypes.arrayOf(PropTypes.string).isRequired,
+    subregions: PropTypes.arrayOf(PropTypes.string).isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    regionalBlocs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    sortAndFilters: PropTypes.object.isRequired,
+    filterAndSortCountries: PropTypes.func.isRequired,
+    filterCountriesByRegion: PropTypes.func.isRequired,
+    filterCountriesBySubregion: PropTypes.func.isRequired,
+    filterCountriesByRegionalBloc: PropTypes.func.isRequired,
+    filterCountriesByLanguages: PropTypes.func.isRequired,
+    filterCountriesByName: PropTypes.func.isRequired,
+    resetFilters: PropTypes.func.isRequired
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.sortAndFilters !== this.props.sortAndFilters) {
       this.props.filterAndSortCountries(this.props.countries, this.props.sortAndFilters)
@@ -121,9 +90,4 @@ class CountrySidebar extends React.Component {
   }
 }
 
-export default withNamespaces()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(CountrySidebar)
-)
+export default withNamespaces()(CountrySidebar)

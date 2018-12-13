@@ -1,26 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Breadcrumb from 'react-bootstrap/lib/Breadcrumb'
 import { withNamespaces } from 'react-i18next'
 
-import { filterCountriesByRegion, filterCountriesBySubregion } from '../../actions'
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onNavigateToWorld: () => {
-      dispatch(filterCountriesByRegion(''))
-    },
-    onNavigateToRegion: () => {
-      dispatch(filterCountriesBySubregion(''))
-    }
-  }
-}
-
 class CountryBreadcrumb extends React.Component {
   static propTypes = {
     region: PropTypes.string,
-    subregion: PropTypes.string
+    subregion: PropTypes.string,
+    onNavigateToWorld: PropTypes.func,
+    onNavigateToRegion: PropTypes.func
+  }
+
+  static defaultProps = {
+    onNavigateToWorld: () => {},
+    onNavigateToRegion: () => {}
   }
 
   render() {
@@ -41,9 +34,4 @@ class CountryBreadcrumb extends React.Component {
   }
 }
 
-export default withNamespaces()(
-  connect(
-    null,
-    mapDispatchToProps
-  )(CountryBreadcrumb)
-)
+export default withNamespaces()(CountryBreadcrumb)

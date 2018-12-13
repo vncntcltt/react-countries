@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/lib/ListGroup'
 import Media from 'react-bootstrap/lib/Media'
 import { withNamespaces } from 'react-i18next'
 
-import UnitDisplay from '../common/UnitDisplay'
+import UnitDisplayContainer from '../common/UnitDisplayContainer'
 
 const CountryCard = ({ t, country, cardMinWidth }) => {
   const {
@@ -60,7 +60,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
           </ListGroup.Item>
           <ListGroup.Item>
             <span className="text-muted pr-2">{t('country.label.area')}</span>
-            <UnitDisplay value={area} />
+            <UnitDisplayContainer value={area} />
           </ListGroup.Item>
           <ListGroup.Item>
             <span className="text-muted pr-2">{t('country.label.languages', { count: languages.length })}</span>

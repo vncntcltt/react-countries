@@ -1,22 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Form from 'react-bootstrap/lib/Form'
 import { withNamespaces } from 'react-i18next'
 import i18next from 'i18next'
 
-import { setSettingsUnit, SETTINGS_UNIT_TYPES } from '../../actions'
-
-const mapStateToProps = state => ({
-  selectedUnit: state.settings.unit
-})
-
-const mapDispatchToProps = dispatch => ({
-  setSelectedUnit: unit => {
-    dispatch(setSettingsUnit(unit))
-  }
-})
+import { SETTINGS_UNIT_TYPES } from '../../actions'
 
 class Settings extends React.Component {
+  static propTypes = {
+    selectedUnit: PropTypes.string.isRequired,
+    setSelectedUnit: PropTypes.func.isRequired
+  }
+
   onLanguageChange = e => {
     const lang = e.target.value
     i18next.changeLanguage(lang)
@@ -28,7 +23,7 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { t } = this.props
+    const { t, selectedUnit } = this.props
     return (
       <Form className="p-3">
         <Form.Group>
@@ -40,7 +35,7 @@ class Settings extends React.Component {
         </Form.Group>
         <Form.Group>
           <Form.Label>{t('settings.label.units')}</Form.Label>
-          <Form.Control as="select" onChange={this.onUnitChange} value={this.props.selectedUnit}>
+          <Form.Control as="select" onChange={this.onUnitChange} value={selectedUnit}>
             <option value={SETTINGS_UNIT_TYPES.METRIC}>{t('settings.units.metric')}</option>
             <option value={SETTINGS_UNIT_TYPES.IMPERIAL}>{t('settings.units.imperial')}</option>
           </Form.Control>
@@ -50,9 +45,4 @@ class Settings extends React.Component {
   }
 }
 
-export default withNamespaces()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Settings)
-)
+export default withNamespaces()(Settings)

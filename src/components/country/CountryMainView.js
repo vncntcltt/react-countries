@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { COUNTRIES_DISPLAY_TYPES } from '../../actions'
-import CountryDisplayType from './CountryDisplayType'
+import CountryDisplayTypeContainer from './CountryDisplayTypeContainer'
 import CountryStatistics from './CountryStatistics'
 import CountryGrid from './CountryGrid'
 import CountryDatatable from './CountryDatatable'
 import CountryMap from './CountryMap'
-import CountryBreadcrumb from './CountryBreadcrumb'
+import CountryBreadcrumbContainer from './CountryBreadcrumbContainer'
 import { withPagination } from '../common/pagination'
 
 const PaginatedCountryTable = withPagination(CountryDatatable)
@@ -39,8 +39,8 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
 
 const CountryMainView = ({ countries, filteredCountries, sortAndFilters, displayType, onCountrySelected }) => (
   <main>
-    <CountryBreadcrumb region={sortAndFilters.filterRegion} subregion={sortAndFilters.filterSubregion} />
-    <CountryDisplayType />
+    <CountryBreadcrumbContainer region={sortAndFilters.filterRegion} subregion={sortAndFilters.filterSubregion} />
+    <CountryDisplayTypeContainer />
     <CountryStatistics countries={countries} filteredCountries={filteredCountries} />
     {renderCountries(filteredCountries, displayType, onCountrySelected)}
   </main>

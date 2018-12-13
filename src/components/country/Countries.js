@@ -1,40 +1,32 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Container from 'react-bootstrap/lib/Container'
 import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
 import Alert from 'react-bootstrap/lib/Alert'
 import { NamespacesConsumer } from 'react-i18next'
 
-import { fetchCountries, setSelectedCountry } from '../../actions'
-import CountrySidebar from './CountrySidebar'
+import CountrySidebarContainer from './CountrySidebarContainer'
 import CountryMainView from './CountryMainView'
 import CountryDetailsModal from './CountryDetailsModal'
 
-const mapStateToProps = state => {
-  return {
-    countries: state.countries.all,
-    filteredCountries: state.countries.filtered,
-    displayType: state.countries.displayType,
-    selectedCountry: state.countries.selectedCountry,
-    loading: state.countries.loading,
-    error: state.countries.error,
-    sortAndFilters: state.sortAndFilters
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCountries: () => {
-      dispatch(fetchCountries())
-    },
-    setSelectedCountry: country => {
-      dispatch(setSelectedCountry(country))
-    }
-  }
-}
-
 class Countries extends React.Component {
+  static propTypes = {
+    countries: PropTypes.array.isRequired,
+    filteredCountries: PropTypes.array.isRequired,
+    fetchCountries: PropTypes.func.isRequired,
+    displayType: PropTypes.string.isRequired,
+    sortAndFilters: PropTypes.object.isRequired,
+    selectedCountry: PropTypes.object.selectedCountry,
+    loading: PropTypes.loading,
+    error: PropTypes.error,
+    setSelectedCountry: PropTypes.func
+  }
+
+  static defaultProps = {
+    setSelectedCountry: () => {}
+  }
+
   componentDidMount() {
     this.props.fetchCountries()
   }
@@ -61,7 +53,7 @@ class Countries extends React.Component {
             ) : (
               <Row>
                 <Col xs xl="2" md="3" className="bg-light">
-                  <CountrySidebar />
+                  <CountrySidebarContainer />
                 </Col>
                 <Col>
                   <CountryMainView
@@ -86,7 +78,4 @@ class Countries extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Countries)
+export default Countries
