@@ -6,33 +6,31 @@ import { withNamespaces } from 'react-i18next'
 
 import { COUNTRIES_DISPLAY_TYPES } from '../../actions'
 
-const CountryDisplayType = ({ t, displayType, setDisplayType }) => {
-  return (
-    <ButtonGroup className="mb-3">
-      <Button
-        value={COUNTRIES_DISPLAY_TYPES.MAP}
-        active={displayType === COUNTRIES_DISPLAY_TYPES.MAP}
-        onClick={setDisplayType}
-      >
-        {t('countries.toolbar.map')}
-      </Button>
-      <Button
-        value={COUNTRIES_DISPLAY_TYPES.GRID}
-        active={displayType === COUNTRIES_DISPLAY_TYPES.GRID}
-        onClick={setDisplayType}
-      >
-        {t('countries.toolbar.grid')}
-      </Button>
-      <Button
-        value={COUNTRIES_DISPLAY_TYPES.TABLE}
-        active={displayType === COUNTRIES_DISPLAY_TYPES.TABLE}
-        onClick={setDisplayType}
-      >
-        {t('countries.toolbar.table')}
-      </Button>
-    </ButtonGroup>
-  )
-}
+const CountryDisplayType = ({ t, displayType, setDisplayType }) => (
+  <ButtonGroup className="mb-3">
+    <Button
+      value={COUNTRIES_DISPLAY_TYPES.MAP}
+      active={displayType === COUNTRIES_DISPLAY_TYPES.MAP}
+      onClick={setDisplayType}
+    >
+      {t('countries.toolbar.map')}
+    </Button>
+    <Button
+      value={COUNTRIES_DISPLAY_TYPES.GRID}
+      active={displayType === COUNTRIES_DISPLAY_TYPES.GRID}
+      onClick={setDisplayType}
+    >
+      {t('countries.toolbar.grid')}
+    </Button>
+    <Button
+      value={COUNTRIES_DISPLAY_TYPES.TABLE}
+      active={displayType === COUNTRIES_DISPLAY_TYPES.TABLE}
+      onClick={setDisplayType}
+    >
+      {t('countries.toolbar.table')}
+    </Button>
+  </ButtonGroup>
+)
 
 CountryDisplayType.propTypes = {
   displayType: PropTypes.string.isRequired,

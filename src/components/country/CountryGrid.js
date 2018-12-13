@@ -6,19 +6,17 @@ import Col from 'react-bootstrap/lib/Col'
 
 import CountryCard from './CountryCard'
 
-const CountryGrid = ({ countries }) => {
-  return (
-    <Container fluid>
-      <Row>
-        {countries.map(country => (
-          <Col key={country.alpha3Code} className="mb-4">
-            <CountryCard country={country} cardMinWidth={300} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
-  )
-}
+const CountryGrid = ({ countries }) => (
+  <Container fluid>
+    <Row>
+      {countries.map(country => (
+        <Col key={country.alpha3Code} className="mb-4">
+          <CountryCard country={country} cardMinWidth={300} />
+        </Col>
+      ))}
+    </Row>
+  </Container>
+)
 
 CountryGrid.propTypes = {
   countries: PropTypes.array.isRequired
