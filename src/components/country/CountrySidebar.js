@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/lib/Button'
 import Navbar from 'react-bootstrap/lib/Navbar'
 import { withNamespaces } from 'react-i18next'
 
-import CountrySearch from './CountrySearch'
+import SearchControl from '../common/SearchControl'
 import SelectFilter from '../common/SelectFilter'
 
 class CountrySidebar extends React.Component {
@@ -43,7 +43,7 @@ class CountrySidebar extends React.Component {
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-sidebar">
             <Form className="py-3">
-              <CountrySearch
+              <SearchControl
                 value={this.props.sortAndFilters.filterName}
                 onSearch={name => this.props.filterCountriesByName(name)}
               />
