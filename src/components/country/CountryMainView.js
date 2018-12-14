@@ -8,11 +8,8 @@ import CountryGrid from './CountryGrid'
 import CountryDatatable from './CountryDatatable'
 import CountryMap from './CountryMap'
 import CountryBreadcrumbContainer from './CountryBreadcrumbContainer'
-import { withPagination } from '../common/pagination'
+import Paginated from '../common/Paginated'
 import { countryPropType, sortAndFilterPropType } from '../common/propTypes'
-
-const PaginatedCountryTable = withPagination(CountryDatatable)
-const PaginatedCountryGrid = withPagination(CountryGrid)
 
 const ITEMS_PER_TABLE_PAGE = 12
 const ITEMS_PER_GRID_PAGE = 8
@@ -21,16 +18,15 @@ const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
   switch (displayType) {
     case COUNTRIES_DISPLAY_TYPES.GRID:
       return (
-        <PaginatedCountryGrid items={filteredCountries} itemsPropName="countries" itemsPerPage={ITEMS_PER_GRID_PAGE} />
+        <Paginated items={filteredCountries} itemsPropName="countries" itemsPerPage={ITEMS_PER_GRID_PAGE}>
+          <CountryGrid />
+        </Paginated>
       )
     case COUNTRIES_DISPLAY_TYPES.TABLE:
       return (
-        <PaginatedCountryTable
-          items={filteredCountries}
-          itemsPropName="countries"
-          itemsPerPage={ITEMS_PER_TABLE_PAGE}
-          onCountrySelected={onCountrySelected}
-        />
+        <Paginated items={filteredCountries} itemsPropName="countries" itemsPerPage={ITEMS_PER_TABLE_PAGE}>
+          <CountryDatatable onCountrySelected={onCountrySelected} />
+        </Paginated>
       )
     case COUNTRIES_DISPLAY_TYPES.MAP:
       return <CountryMap countries={filteredCountries} onCountrySelected={onCountrySelected} />
