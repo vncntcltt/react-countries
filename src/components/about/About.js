@@ -34,6 +34,7 @@ const About = function({ t }) {
               </li>
               <li>Bootstrap</li>
               <li>Leaflet</li>
+              <li>Storybook</li>
             </ul>
           </article>
         </Tab>
