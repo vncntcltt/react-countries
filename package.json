@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://vncntcltt.github.io/react-countries",
   "dependencies": {
+    "bootstrap": "^4.1.3",
     "connected-react-router": "^6.0.0",
     "history": "^4.7.2",
     "i18next": "^13.0.0",
