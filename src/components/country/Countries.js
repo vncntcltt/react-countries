@@ -19,8 +19,8 @@ class Countries extends React.Component {
     displayType: PropTypes.string.isRequired,
     sortAndFilters: sortAndFilterPropType,
     selectedCountry: countryPropType,
-    loading: PropTypes.loading,
-    error: PropTypes.error,
+    loading: PropTypes.bool,
+    error: PropTypes.string,
     setSelectedCountry: PropTypes.func
   }
 

@@ -21,7 +21,7 @@ const CountryDetailsModal = ({ t, country, onHide, ...restProps }) => (
 
 CountryDetailsModal.propTypes = {
   t: PropTypes.func.isRequired,
-  country: countryPropType.isRequired,
+  country: countryPropType,
   onHide: PropTypes.func.isRequired
 }
 

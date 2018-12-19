@@ -5,8 +5,8 @@ export const languagePropType = shape({
 })
 
 export const currencyPropType = shape({
-  name: string.isRequired,
-  code: string.isRequired
+  name: string,
+  code: string
 })
 
 export const regionalBlocPropType = shape({
