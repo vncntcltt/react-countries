@@ -38,7 +38,7 @@ class CountrySidebar extends React.Component {
       <aside>
         <Navbar expand="md" className="px-0">
           <Navbar.Toggle aria-controls="responsive-sidebar">
-            <span class="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon" />
             <span className="px-2">{t('filters.header')}</span>
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-sidebar">
