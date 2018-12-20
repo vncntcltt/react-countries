@@ -3,37 +3,37 @@
   "name": "React Countries app",
   "icons": [
     {
-      "src": "/react-countries/icons/world-36.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-36.png",
       "sizes": "36x36",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-48.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-72.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-96.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-144.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-192.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/react-countries/icons/world-512.png",
+      "src": "https://vncntcltt.github.io/react-countries/icons/world-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
