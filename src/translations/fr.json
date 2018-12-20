@@ -22,7 +22,7 @@
   "about.tab.credits": "Crédits",
   "about.app.part1": "Cette application est un projet open source personnel pour apprendre React, disponible sur ",
   "about.app.part2": "Les données des pays sont récupérées depuis une source distance puis affichées dans une carte, une grille ou un tableau et elles peuvent être filtrées.",
-  "about.app.part3": "L'application est responsive, traduite en Anglais et Français (sauf les données) et est configurable : la langue et l'affichage des unités peuvent être modifiés dans les paramètres.",
+  "about.app.part3": "L'application est progressive, responsive, traduite en Anglais et Français (sauf les données) et est configurable : la langue et l'affichage des unités peuvent être modifiés dans les paramètres.",
   "about.data.countriesData": "Les données des pays proviennent de ",
   "about.data.countriesGeoJson": "Les données GeoJSON proviennent de ",
   "about.data.icons": "Les icônes sont faites par ",
@@ -79,5 +79,8 @@
   "statistics.subtext.worldCountries": "des pays du monde",
   "statistics.text.people": "personnes",
   "statistics.subtext.worldPopulation": "de la population mondiale",
-  "statistics.subtext.worldArea": "de la superficie du monde"
+  "statistics.subtext.worldArea": "de la superficie du monde",
+
+  "serviceWorker.msg.cacheSuccess": "Le contenu de l'application a été mis en cache et est désormais disponible hors connexion.",
+  "serviceWorker.msg.cacheUpdate": "Le contenu de l'application doit être mis à jour, veuillez recharger l'onglet.."
 }

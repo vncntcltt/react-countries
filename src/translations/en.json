@@ -22,7 +22,7 @@
   "about.tab.credits": "Credits",
   "about.app.part1": "This app is a personal open source project to learn React available on ",
   "about.app.part2": "Countries data are fetched from a remote data source then displayed as map, grid or table and may be filtered.",
-  "about.app.part3": "The app is responsive, localized in English and French (except for data) and is configurable: language and unit display  may be changed in settings.",
+  "about.app.part3": "The app is progressive, responsive, localized in English and French (except for data) and is configurable: language and unit display  may be changed in settings.",
   "about.data.countriesData": "Countries data comes from ",
   "about.data.countriesGeoJson": "GeoJSON data comes from ",
   "about.data.icons": "Icons are made by ",
@@ -79,5 +79,8 @@
   "statistics.subtext.worldCountries": "of the world countries",
   "statistics.text.people": "people",
   "statistics.subtext.worldPopulation": "of the world population",
-  "statistics.subtext.worldArea": "of the world area"
+  "statistics.subtext.worldArea": "of the world area",
+
+  "serviceWorker.msg.cacheSuccess": "App content cached and now available offline.",
+  "serviceWorker.msg.cacheUpdate": "App content update needed, please reload tab."
 }
