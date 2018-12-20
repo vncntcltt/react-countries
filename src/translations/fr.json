@@ -1,5 +1,4 @@
 {
-
   "countries.title": "Pays",
   "countries.toolbar.map": "Carte",
   "countries.toolbar.grid": "Grille",
@@ -9,7 +8,7 @@
   "content.message.dataLoading": "Chargement des données...",
   "content.message.dataFetchError": "Impossible de récupérer les données !",
 
-  "footer.info" : "2018 - Countries app",
+  "footer.info": "2018 - Countries app",
 
   "dialog.title.details": "Détails",
   "dialog.button.close": "Fermer",
@@ -20,11 +19,14 @@
   "about.title": "A propos",
   "about.tab.app": "Application",
   "about.tab.tech": "Technologies",
-  "about.tab.data": "Données",
+  "about.tab.credits": "Crédits",
   "about.app.part1": "Cette application est un projet open source personnel pour apprendre React, disponible sur ",
   "about.app.part2": "Les données des pays sont récupérées depuis une source distance puis affichées dans une carte, une grille ou un tableau et elles peuvent être filtrées.",
-  "about.app.part3": "L'application est responseive, traduite en Anglais et Français (sauf les données) et est configurable : la langue et l'affichage des unités peuvent être modifiés dans les paramètres.",
+  "about.app.part3": "L'application est responsive, traduite en Anglais et Français (sauf les données) et est configurable : la langue et l'affichage des unités peuvent être modifiés dans les paramètres.",
   "about.data.countriesData": "Les données des pays proviennent de ",
+  "about.data.countriesGeoJson": "Les données GeoJSON proviennent de ",
+  "about.data.icons": "Les icônes sont faites par ",
+  "about.data.from": " depuis ",
 
   "settings.title": "Paramètres",
   "settings.label.language": "Langue",
@@ -78,5 +80,4 @@
   "statistics.text.people": "personnes",
   "statistics.subtext.worldPopulation": "de la population mondiale",
   "statistics.subtext.worldArea": "de la superficie du monde"
-
 }

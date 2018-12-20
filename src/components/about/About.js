@@ -38,12 +38,38 @@ const About = function({ t }) {
             </ul>
           </article>
         </Tab>
-        <Tab eventKey="data" title={t('about.tab.data')}>
+        <Tab eventKey="credits" title={t('about.tab.credits')}>
           <article className="p-2">
-            {t('about.data.countriesData')}
-            <a href="https://restcountries.eu/" target="_blank" rel="noopener noreferrer">
-              REST Countries
-            </a>
+            <p>
+              {t('about.data.countriesData')}
+              <a href="https://restcountries.eu/" target="_blank" rel="noopener noreferrer">
+                REST Countries
+              </a>
+            </p>
+            <p>
+              {t('about.data.countriesGeoJson')}
+              <a href="https://github.com/johan/world.geo.json/" target="_blank" rel="noopener noreferrer">
+                world.geo.json
+              </a>
+            </p>
+            <p>
+              {t('about.data.icons')}
+              <a href="https://www.freepik.com/" title="Freepik">
+                Freepik
+              </a>{' '}
+              {t('about.data.from')}
+              <a href="https://www.flaticon.com/" title="Flaticon">
+                www.flaticon.com
+              </a>{' '}
+              <a
+                href="http://creativecommons.org/licenses/by/3.0/"
+                title="Creative Commons BY 3.0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (CC 3.0 BY)
+              </a>
+            </p>
           </article>
         </Tab>
       </Tabs>

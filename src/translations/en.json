@@ -1,5 +1,4 @@
 {
-
   "countries.title": "Countries",
   "countries.toolbar.map": "Map",
   "countries.toolbar.grid": "Grid",
@@ -9,7 +8,7 @@
   "content.message.dataLoading": "Loading data...",
   "content.message.dataFetchError": "Could not fetch data !",
 
-  "footer.info" : "2018 - Countries app",
+  "footer.info": "2018 - Countries app",
 
   "dialog.title.details": "Details",
   "dialog.button.close": "Close",
@@ -20,11 +19,14 @@
   "about.title": "About",
   "about.tab.app": "App",
   "about.tab.tech": "Tech",
-  "about.tab.data": "Data",
+  "about.tab.credits": "Credits",
   "about.app.part1": "This app is a personal open source project to learn React available on ",
   "about.app.part2": "Countries data are fetched from a remote data source then displayed as map, grid or table and may be filtered.",
   "about.app.part3": "The app is responsive, localized in English and French (except for data) and is configurable: language and unit display  may be changed in settings.",
   "about.data.countriesData": "Countries data comes from ",
+  "about.data.countriesGeoJson": "GeoJSON data comes from ",
+  "about.data.icons": "Icons are made by ",
+  "about.data.from": " from ",
 
   "settings.title": "Settings",
   "settings.label.language": "Language",
@@ -78,5 +80,4 @@
   "statistics.text.people": "people",
   "statistics.subtext.worldPopulation": "of the world population",
   "statistics.subtext.worldArea": "of the world area"
-
 }
