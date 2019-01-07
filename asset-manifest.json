@@ -1,7 +1,7 @@
 {
   "main.css": "/react-countries/static/css/main.eda6eb34.chunk.css",
-  "main.js": "/react-countries/static/js/main.ce2a40b9.chunk.js",
-  "main.js.map": "/react-countries/static/js/main.ce2a40b9.chunk.js.map",
+  "main.js": "/react-countries/static/js/main.73e9fd2e.chunk.js",
+  "main.js.map": "/react-countries/static/js/main.73e9fd2e.chunk.js.map",
   "static/css/1.c8fcb3d8.chunk.css": "/react-countries/static/css/1.c8fcb3d8.chunk.css",
   "static/js/1.fe73edcd.chunk.js": "/react-countries/static/js/1.fe73edcd.chunk.js",
   "static/js/1.fe73edcd.chunk.js.map": "/react-countries/static/js/1.fe73edcd.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/1.c8fcb3d8.chunk.css.map": "/react-countries/static/css/1.c8fcb3d8.chunk.css.map",
   "static/css/main.eda6eb34.chunk.css.map": "/react-countries/static/css/main.eda6eb34.chunk.css.map",
   "index.html": "/react-countries/index.html",
-  "precache-manifest.387db0807ada2453710c4dcf7c084816.js": "/react-countries/precache-manifest.387db0807ada2453710c4dcf7c084816.js",
+  "precache-manifest.f10fb23a3d608a665c82f077f9571046.js": "/react-countries/precache-manifest.f10fb23a3d608a665c82f077f9571046.js",
   "service-worker.js": "/react-countries/service-worker.js"
 }
