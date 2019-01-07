@@ -12,7 +12,7 @@ import Paginated from '../common/Paginated'
 import { countryPropType, sortAndFilterPropType } from '../common/propTypes'
 
 const ITEMS_PER_TABLE_PAGE = 12
-const ITEMS_PER_GRID_PAGE = 8
+const ITEMS_PER_GRID_PAGE = 6
 
 const renderCountries = (filteredCountries, displayType, onCountrySelected) => {
   switch (displayType) {

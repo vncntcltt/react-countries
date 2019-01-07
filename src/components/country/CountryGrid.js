@@ -11,8 +11,8 @@ const CountryGrid = ({ countries }) => (
   <Container fluid>
     <Row>
       {countries.map(country => (
-        <Col key={country.alpha3Code} className="mb-4">
-          <CountryCard country={country} cardMinWidth={300} />
+        <Col key={country.alpha3Code} xs="auto" className="mb-3">
+          <CountryCard country={country} cardWidth={400} />
         </Col>
       ))}
     </Row>
@@ -20,7 +20,7 @@ const CountryGrid = ({ countries }) => (
 )
 
 CountryGrid.propTypes = {
-  countries: PropTypes.arrayOf(countryPropType).isRequired
+  countries: PropTypes.arrayOf(countryPropType)
 }
 
 export default CountryGrid

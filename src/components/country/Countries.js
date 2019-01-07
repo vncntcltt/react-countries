@@ -53,10 +53,10 @@ class Countries extends React.Component {
               <Alert variant="info">{t('content.message.dataLoading')}</Alert>
             ) : (
               <Row>
-                <Col xs xl="2" md="3" className="bg-light">
+                <Col sm={3} lg={2} className="bg-light">
                   <CountrySidebarContainer />
                 </Col>
-                <Col>
+                <Col sm={9} lg={10}>
                   <CountryMainView
                     countries={countries}
                     filteredCountries={filteredCountries}

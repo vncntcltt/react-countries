@@ -8,7 +8,7 @@ import { withNamespaces } from 'react-i18next'
 import UnitDisplayContainer from '../common/UnitDisplayContainer'
 import { countryPropType } from '../common/propTypes'
 
-const CountryCard = ({ t, country, cardMinWidth }) => {
+const CountryCard = ({ t, country, cardWidth }) => {
   const {
     name,
     alpha3Code,
@@ -25,7 +25,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
   const countryLanguages = languages.map(l => l.name).join(', ')
   const countryCurrencies = currencies.map(c => `${c.name} (${c.code})`).join(', ')
   const countryRegionalBlocs = regionalBlocs.map(rb => rb.name).join(', ')
-  const cardStyles = cardMinWidth ? { minWidth: cardMinWidth } : {}
+  const cardStyles = cardWidth ? { width: cardWidth } : {}
   return (
     <Card style={cardStyles}>
       <Card.Header>
@@ -43,11 +43,11 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
       </Card.Header>
       <Card.Body>
         <ListGroup variant="flush">
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">{t('country.label.capital')}</span>
             {capital}
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">
               {t('country.label.regionalBlocs', {
                 count: regionalBlocs.length
@@ -55,19 +55,19 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
             </span>
             {countryRegionalBlocs}
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">{t('country.label.population')}</span>
             {population}
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">{t('country.label.area')}</span>
             <UnitDisplayContainer value={area} />
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">{t('country.label.languages', { count: languages.length })}</span>
             {countryLanguages}
           </ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className="text-truncate">
             <span className="text-muted pr-2">{t('country.label.currencies', { count: currencies.length })}</span>
             {countryCurrencies}
           </ListGroup.Item>
@@ -80,7 +80,7 @@ const CountryCard = ({ t, country, cardMinWidth }) => {
 CountryCard.propTypes = {
   t: PropTypes.func.isRequired,
   country: countryPropType.isRequired,
-  cardMinWidth: PropTypes.number
+  cardWidth: PropTypes.number
 }
 
 export default withNamespaces()(CountryCard)
